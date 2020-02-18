@@ -6,7 +6,8 @@ const router = vertex.router()
 const Profile = require('../models/Profile');
 
 router.get('/profile', (req,res) => {
-  Profile.find()
+  const query = req.query;
+  Profile.find(query)
   .then(profiles => {
     res.json({
       confirmation: 'success',
