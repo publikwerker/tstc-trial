@@ -1,0 +1,12 @@
+{"firstname":"bob", "lastname":"roberts",
+  "age":15,
+  "position":"first",
+  "team":"mets"}{"firstname":"tob", "lastname":"thomas",
+  "age":16,
+  "position":"second",
+  "team":"angels"
+}{"firstname":"mark", "lastname":"markus",
+  "age":14,
+  "position":"pitcher",
+  "team":"blues"
+}
