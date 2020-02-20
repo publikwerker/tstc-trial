@@ -11,20 +11,21 @@ const Profile = new mongoose.Schema({
     trim: true,
     default:''
   },
-  age: {
-    type:Number,
-    default:0
-  },
-  team: {
+  username: {
     type:String,
     trim: true,
     default:''
   },
-  position: {
+  email: {
     type:String,
     trim: true,
     default:''
   },
+  password: {
+    type:String,
+    trim: true,
+    default:''
+  }
 });
 
 module.exports = mongoose.model('Profile', Profile);
