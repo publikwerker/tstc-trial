@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "start": "node ./app.js",
+    "dev": "nodemon ./app.js",
     "test": "",
     "build": "",
     "postinstall": "turbo postinstall"
