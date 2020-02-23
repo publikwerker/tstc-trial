@@ -33,6 +33,8 @@
     "proxy-addr": "^2.0.3",
     "qs": "6.5.1",
     "range-parser": "^1.2.0",
+    "react": "^16.12.0",
+    "react-router-dom": "^5.1.2",
     "rimraf": "^2.6.2",
     "safe-buffer": "5.1.1",
     "send": "0.16.2",
