@@ -7,6 +7,7 @@ export default class Compendium extends Component {
     return (
       <div className="compendium">
         <Router>
+          <p>TSTC is Online!</p>
         </Router>
       </div>
     );
