@@ -1,11 +1,9 @@
-// Full Documentation - https://docs.turbo360.co
-const vertex = require('vertex360')({site_id: process.env.TURBO_APP_ID})
+const express = require('express');
+const app = express();
+const port = 3000;
 
 const config = {
-	views: 'views', 		// Set views directory 
-	static: 'public', 		// Set static assets directory
-	db: { 					// Database configuration. Remember to set env variables in .env file: MONGODB_URI, PROD_MONGODB_URI
-		//url: (process.env.TURBO_ENV == 'dev') ? process.env.MONGODB_URI : process.env.PROD_MONGODB_URI,
+	db: { 					// Database configuration. 
     url: 'mongodb://localhost/tstc-trial',
     type: 'mongo',
 		onError: (err) => {
@@ -17,17 +15,8 @@ const config = {
 	}
 }
 
-const app = vertex.app(config) // initialize app with config options
+app.get('/', (req,res) => res.send('tstc is online!'));
 
-
-
-// import routes
-const index = require('./routes/index')
-const api = require('./routes/api')
-
-// set routes
-app.use('/', index)
-app.use('/api', api) // sample API Routes
-
+app.listen(port, () => console.log(`App listening on port ${port}!`));
 
 module.exports = app
