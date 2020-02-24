@@ -7,8 +7,7 @@
     "start": "node ./app.js",
     "dev": "nodemon ./app.js",
     "test": "",
-    "build": "",
-    "postinstall": "turbo postinstall"
+    "build": ""
   },
   "dependencies": {
     "accepts": "^1.3.5",
@@ -27,7 +26,6 @@
     "fresh": "0.5.2",
     "merge-descriptors": "1.0.1",
     "methods": "^1.1.2",
-    "mongoose": "^5.9.2",
     "on-finished": "^2.3.0",
     "parseurl": "^1.3.2",
     "path-to-regexp": "0.1.7",

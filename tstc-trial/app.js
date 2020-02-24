@@ -52,6 +52,26 @@ app.get('/profile/:id', async(req,res,next) => {
   }
 });
 
+app.put('/profile/:id', async(req,res,next) => {
+  try {
+    let profile = await Profile.findById(req.params.id).exec();
+    profile.set(req.body);
+    let result = profile.save();
+    res.send(result);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+app.delete('/profile/:id', async(req,res,next) => {
+  try {
+    let result = await Profile.deleteOne({ _id: req.params.id }).exec();
+    res.send(result);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 app.post('/visitor', (req,res) => res.send(`Posting visitor info to database!`));
 
 app.post('/user', async (req,res,next) => {
