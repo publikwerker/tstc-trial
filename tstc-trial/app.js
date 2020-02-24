@@ -1,24 +1,29 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+const Profile = require( "./models/Profile");
 
-const config = {
-	db: { 					// Database configuration. 
-    url: 'mongodb://localhost/tstc-trial',
-    type: 'mongo',
-		onError: (err) => {
-			console.log('DB Connection Failed!')
-		},
-		onSuccess: () => {
-			console.log('DB Successfully Connected!')
-		}
-	}
-}
-
-express.static('public');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
+
+mongoose.connect('mongodb://localhost/tstc-trial')
+
+// const config = {
+// 	db: { 					// Database configuration. 
+//     url: 'mongodb://localhost/tstc-trial',
+//     type: 'mongo',
+// 		onError: (err) => {
+// 			console.log('DB Connection Failed!')
+// 		},
+// 		onSuccess: () => {
+// 			console.log('DB Successfully Connected!')
+// 		}
+// 	}
+// }
+
+express.static('public');
 
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8080');
@@ -29,9 +34,37 @@ app.use((req, res, next) => {
 
 app.get('/', (req,res) => res.send('tstc is online!'));
 
+app.get('/profiles', async(req,res,next) => {
+  try {
+    let result = await Profile.find().exec();
+    res.send(result);
+  } catch (err) {
+    res.status(500).send(err)
+  }
+});
+
+app.get('/profile/:id', async(req,res,next) => {
+  try {
+    let profile = await Profile.findById(req.params.id).exec();
+    res.send(profile);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
 app.post('/visitor', (req,res) => res.send(`Posting visitor info to database!`));
 
-app.post('/user', (req,res) => res.send(`Posting new user profile to database!`));
+app.post('/user', async (req,res,next) => {
+  try {
+    let user = new Profile(req.body);
+    let result = await user.save();
+    res.send(`Posting new user profile to database! ${res}`) 
+  } catch(err){
+    res.status(500).send(err);
+  }
+});
+
+//  res.send(`Posting new user profile to database!`));
 
 app.put('/user', function(req,res) {
   res.send(`Updating user profile in database!`)
