@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Ticker from './components/Ticker.js';
+import Ticker from './Ticker.js';
 
 export default class Compendium extends Component {
   

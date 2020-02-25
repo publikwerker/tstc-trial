@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 export default class Ticker extends Component {
 
   visitorObject = {};
-  
+
   render(){
 
     var w = window.innerWidth
