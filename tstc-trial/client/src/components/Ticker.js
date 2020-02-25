@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 
 export default class Ticker extends Component {
 
-  setVariableName(variable){
-    if (variable != false) {
-
-    }
-  }
+  visitorObject = {};
   
   render(){
 
@@ -32,6 +28,21 @@ export default class Ticker extends Component {
     let visitorTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     let viewportSize = {height: h, width: w};
 
+    this.visitorObject ={
+      navAppName,
+      navAppCodeName,
+      navPlatform,
+      navProduct,
+      navAppVersion,
+      navUserAgent,
+      navLanguage,
+      navOnLine,
+      navJavaEnabled,
+      hostname,
+      visitorLocation,
+      visitorTimeZone,
+      viewportSize
+    }
 
     return (
       <div className="banner-box">

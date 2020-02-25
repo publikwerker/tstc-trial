@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 const port = process.env.PORT || 3000;
 const Profile = require( "./models/Profile");
+const Visitor = require("./models/Visitor");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
@@ -72,13 +73,21 @@ app.delete('/profile/:id', async(req,res,next) => {
   }
 });
 
-app.post('/visitor', (req,res) => res.send(`Posting visitor info to database!`));
+app.post('/visitor', async (req,res) => {
+  try {
+    let visitor = new Visitor(req.body);
+    let result = await visitor.save();
+    res.send(`Posting visitor info to database! ${result}`)   
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
 
 app.post('/user', async (req,res,next) => {
   try {
     let user = new Profile(req.body);
     let result = await user.save();
-    res.send(`Posting new user profile to database! ${res}`) 
+    res.send(`Posting new user profile to database! ${result}`) 
   } catch(err){
     res.status(500).send(err);
   }
