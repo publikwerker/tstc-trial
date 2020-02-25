@@ -40,16 +40,10 @@ const Visitor = new mongoose.Schema({
   visitorTimeZone: {
     type:String
   },
-  visitorLocation: {
-    type:String,
-  },
-  visitorTimeZone: {
-    type:String,
-  },
   viewportSize: {
     type:Object,
     properties: {
-      length: {
+      height: {
         type: Number
       },
       width: {

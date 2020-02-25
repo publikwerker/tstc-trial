@@ -4,7 +4,7 @@ export default class Ticker extends Component {
 
   setVariableName(variable){
     if (variable != false) {
-      
+
     }
   }
   
@@ -30,7 +30,7 @@ export default class Ticker extends Component {
     let hostname = window.location.hostname;
     let visitorLocation = Intl.DateTimeFormat().resolvedOptions().locale;
     let visitorTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
+    let viewportSize = {height: h, width: w};
 
 
     return (
