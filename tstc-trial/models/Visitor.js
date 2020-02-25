@@ -1,59 +1,69 @@
 const mongoose = require('mongoose');
 
 const Visitor = new mongoose.Schema({
-  hitDate: {
-    type: Date,
-  },
   duration: {
-    type: Number,
-  },
-  OS: {
-    type: String,
-  },
-  location: {
-    type: String,
+    type:Number,
   },
   IPAddress: {
-    type: String,
-  },
-  windowName: {
     type:String,
   },
-  navigatorPlugins: {
-    type:Array,
+  navAppName: {
+    type:String,
+  },
+  navAppCodeName: {
+    type:String
+  },
+  navPlatform: {
+    type:String
+  },
+  navProduct: {
+    type:String
+  },
+  navAppVersion: {
+    type:String
+  },
+  navUserAgent: {
+    type:String
+  },
+  navLanguage: {
+    type:String
+  },
+  navJavaEnabled: {
+    type:Boolean
+  },
+  hostname: {
+    type:String
+  },
+  visitorLocation: {
+    type:String
+  },
+  visitorTimeZone: {
+    type:String
+  },
+  visitorLocation: {
+    type:String,
+  },
+  visitorTimeZone: {
+    type:String,
   },
   viewportSize: {
-    type:Array,
+    type:Object,
+    properties: {
+      length: {
+        type: Number
+      },
+      width: {
+        type: Number
+      }
+    }
   },
   openPorts: {
     type:Number,
     default:0,
   },
-  preferedLanguage: {
-    type:String,
-    default:'',
+  navigatorPlugins: {
+    type:Array,
   },
-  localTime: {
-    type:String,
-  },
-  localTimeZone: {
-    type:String,
-  },
-  browserVersion: {
-    type:String,
-  },
-  appName: {
-    type:String,
-  },
-  platform: {
-    type:String,
-  },
-  product: {
-    type:String,
-  },
-  userAgent: {
-    type:String,
-  }
 });
 
 module.exports = mongoose.models('Visitor', Visitor);

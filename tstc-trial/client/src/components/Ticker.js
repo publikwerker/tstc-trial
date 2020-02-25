@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 
 export default class Ticker extends Component {
 
+  setVariableName(variable){
+    if (variable != false) {
+      
+    }
+  }
   
   render(){
 
