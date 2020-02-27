@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Marquee from 'react-double-marquee';
 
 export default class Ticker extends Component {
 
@@ -46,8 +47,14 @@ export default class Ticker extends Component {
 
     return (
       <div className="banner-box">
-      <p>Notice: This is the information you are exposing:</p>
-      <div className="banner">navigator.appName is  "{navAppName}". navigator.appCodeName is "{navAppCodeName}". navigator.platform is "{navPlatform}". navigator.product is "{navProduct}". navigator.appVersion is "{navAppVersion}". navigator.userAgent is "{navUserAgent}". navigator.language is "{navLanguage}". navigator.onLine is "{navOnLine}". navigator.javaEnabled() is "{navJavaEnabled}". Browser inner window width: {w}, height: {h}. Your page hostname is "{hostname}". Your location is "{visitorLocation}". Your timezone is {visitorTimeZone}.</div>
+      <p>Notice: Your browser is exposing the following information:</p>
+      <div id="ticker"       
+        style={{
+          width: '100%',
+          whiteSpace: 'nowrap',
+        }}>
+        <Marquee>navigator.appName is  "{navAppName}". navigator.appCodeName is "{navAppCodeName}". navigator.platform is "{navPlatform}". navigator.product is "{navProduct}". navigator.appVersion is "{navAppVersion}". navigator.userAgent is "{navUserAgent}". navigator.language is "{navLanguage}". navigator.onLine is "{navOnLine}". navigator.javaEnabled() is "{navJavaEnabled}". Browser inner window width: {w}, height: {h}. Your page hostname is "{hostname}". Your location is "{visitorLocation}".</Marquee>
+      </div>
       </div>
     );
   }
