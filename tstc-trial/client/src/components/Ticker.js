@@ -32,9 +32,19 @@ export default class Ticker extends Component {
      viewportWidth : w
     };
 
-    let visitorDisplayArray = JSON.stringify(this.visitorObject).split(',').map((pair) =>  pair.split(':'));
-    console.log(visitorDisplayArray);
+    // allow access to key names as strings
+    let visitorDisplayArray = JSON.stringify(this.visitorObject);
+
+    //remove { and } from string
+    visitorDisplayArray=visitorDisplayArray.slice(1,visitorDisplayArray.length-2);
+
+    //remove commas from key values, so they don't split in next operation
+    visitorDisplayArray = visitorDisplayArray.replace(/, /g, '; ');
+
+    //create an array of arrays, each with key name and value
+    visitorDisplayArray= visitorDisplayArray.split(',').map((pair) =>  pair.split(':'));
    
+    //create string to display in Marquee
     this.visitorDisplayString = visitorDisplayArray.map( pair =>
     (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.` : ` Your ${pair[0]} variable is blank.`));
 
