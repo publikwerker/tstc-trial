@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Marquee from 'react-double-marquee';
 
 export default class Ticker extends Component {
-
+  visitorDisplayString = "";
   visitorObject = {};
 
   render(){
@@ -15,35 +15,29 @@ export default class Ticker extends Component {
     || document.documentElement.clientHeight
     || document.body.clientHeight;
 
-    let navAppName = navigator.appName;
-    let navAppCodeName = navigator.appCodeName;
-    let navPlatform = navigator.platform;
-    let navProduct = navigator.product;
-    let navAppVersion = navigator.appVersion;
-    let navUserAgent = navigator.userAgent;
-    let navLanguage = navigator.language;
-    let navOnLine = navigator.onLine;
-    let navJavaEnabled = navigator.javaEnabled();
-    let hostname = window.location.hostname;
-    let visitorLocation = Intl.DateTimeFormat().resolvedOptions().locale;
-    let visitorTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    let viewportSize = {height: h, width: w};
-
-    this.visitorObject ={
-      navAppName,
-      navAppCodeName,
-      navPlatform,
-      navProduct,
-      navAppVersion,
-      navUserAgent,
-      navLanguage,
-      navOnLine,
-      navJavaEnabled,
-      hostname,
-      visitorLocation,
-      visitorTimeZone,
-      viewportSize
+    this.visitorObject = {
+     navAppName : navigator.appName,
+     navAppCodeName : navigator.appCodeName,
+     navPlatform : navigator.platform,
+     navProduct : navigator.product,
+     navAppVersion : navigator.appVersion,
+     navUserAgent : navigator.userAgent,
+     navLanguage : navigator.language,
+     navOnLine : navigator.onLine,
+     navJavaEnabled : navigator.javaEnabled(),
+     hostname : window.location.hostname,
+     visitorLocation : Intl.DateTimeFormat().resolvedOptions().locale,
+     visitorTimeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
+     viewportHeight : h,
+     viewportWidth : w
     }
+    console.log(w);
+    console.log(this.visitorObject.viewportWidth);
+
+    let visitorDisplayArray = JSON.stringify(this.visitorObject).split(',').map((pair) => pair.split(':'));
+    this.visitorDisplayString = visitorDisplayArray.map( pair =>
+    (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.` : ` Your ${pair[0]} variable is blank.`));
+    console.log(visitorDisplayArray);
 
     return (
       <div className="banner-box">
@@ -56,7 +50,7 @@ export default class Ticker extends Component {
               whiteSpace: 'nowrap',
               direction: 'left',
             }}>
-            <Marquee>Notice: Your browser is exposing the following information: The navigator.appName is  "{navAppName}". The navigator.appCodeName is "{navAppCodeName}". The navigator.platform is "{navPlatform}". The navigator.product is "{navProduct}". The navigator.appVersion is "{navAppVersion}". The navigator.userAgent is "{navUserAgent}". The navigator.language is "{navLanguage}". The navigator.onLine is "{navOnLine}". The navigator.The javaEnabled() is "{navJavaEnabled}". The browser inner window width: {w}, height: {h}. Your page hostname is "{hostname}". Your location is "{visitorLocation}".</Marquee>
+            <Marquee>Notice: Your browser is exposing the following information: {this.visitorDisplayString}</Marquee>
           </div>
         </div>
       </div>
