@@ -16,28 +16,27 @@ export default class Ticker extends Component {
     || document.body.clientHeight;
 
     this.visitorObject = {
-     navAppName : navigator.appName,
-     navAppCodeName : navigator.appCodeName,
-     navPlatform : navigator.platform,
-     navProduct : navigator.product,
-     navAppVersion : navigator.appVersion,
-     navUserAgent : navigator.userAgent,
-     navLanguage : navigator.language,
-     navOnLine : navigator.onLine,
-     navJavaEnabled : navigator.javaEnabled(),
+     appName : navigator.appName,
+     appCodeName : navigator.appCodeName,
+     platform : navigator.platform,
+     product : navigator.product,
+     appVersion : navigator.appVersion,
+     userAgent : navigator.userAgent,
+     language : navigator.language,
+     onLine : navigator.onLine,
+     javaEnabled : navigator.javaEnabled(),
      hostname : window.location.hostname,
-     visitorLocation : Intl.DateTimeFormat().resolvedOptions().locale,
-     visitorTimeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
+     locale : Intl.DateTimeFormat().resolvedOptions().locale,
+     timeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
      viewportHeight : h,
      viewportWidth : w
-    }
-    console.log(w);
-    console.log(this.visitorObject.viewportWidth);
+    };
 
-    let visitorDisplayArray = JSON.stringify(this.visitorObject).split(',').map((pair) => pair.split(':'));
+    let visitorDisplayArray = JSON.stringify(this.visitorObject).split(',').map((pair) =>  pair.split(':'));
+    console.log(visitorDisplayArray);
+   
     this.visitorDisplayString = visitorDisplayArray.map( pair =>
     (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.` : ` Your ${pair[0]} variable is blank.`));
-    console.log(visitorDisplayArray);
 
     return (
       <div className="banner-box">
