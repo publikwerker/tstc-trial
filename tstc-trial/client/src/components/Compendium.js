@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Ticker from './Ticker.js';
+import Header from './Header';
 
 export default class Compendium extends Component {
   
@@ -8,7 +8,7 @@ export default class Compendium extends Component {
     return (
       <div className="compendium">
           <p>TSTC is Online!</p>
-          <Ticker />
+          <Header />
       </div>
     );
   }
