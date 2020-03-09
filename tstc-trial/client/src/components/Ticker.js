@@ -2,10 +2,14 @@ import React, { Component } from 'react';
 import Marquee from 'react-double-marquee';
 
 export default class Ticker extends Component {
-  visitorDisplayString = "";
-  visitorObject = {};
+  constructor(props){
+    super(props);
+    this.state = {
+      visitorObject: {}
+    }
+  }
 
-  render(){
+  componentDidMount(){
 
     var w = window.innerWidth
     || document.documentElement.clientWidth
@@ -15,25 +19,33 @@ export default class Ticker extends Component {
     || document.documentElement.clientHeight
     || document.body.clientHeight;
 
-    this.visitorObject = {
-     appName : navigator.appName,
-     appCodeName : navigator.appCodeName,
-     platform : navigator.platform,
-     product : navigator.product,
-     appVersion : navigator.appVersion,
-     userAgent : navigator.userAgent,
-     language : navigator.language,
-     onLine : navigator.onLine,
-     javaEnabled : navigator.javaEnabled(),
-     hostname : window.location.hostname,
-     locale : Intl.DateTimeFormat().resolvedOptions().locale,
-     timeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
-     viewportHeight : h,
-     viewportWidth : w
-    };
+    this.setState({
+
+      visitorObject : {
+        appName : navigator.appName,
+        appCodeName : navigator.appCodeName,
+        platform : navigator.platform,
+        product : navigator.product,
+        appVersion : navigator.appVersion,
+        userAgent : navigator.userAgent,
+        language : navigator.language,
+        onLine : navigator.onLine,
+        javaEnabled : navigator.javaEnabled(),
+        hostname : window.location.hostname,
+        locale : Intl.DateTimeFormat().resolvedOptions().locale,
+        timeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
+        viewportHeight : h,
+        viewportWidth : w
+       }
+    })
+  }
+  visitorDisplayString = "";
+
+
+  render(){
 
     // allow access to key names as strings
-    let visitorDisplayArray = JSON.stringify(this.visitorObject);
+    let visitorDisplayArray = JSON.stringify(this.state.visitorObject);
 
     //remove { and } from string
     visitorDisplayArray=visitorDisplayArray.slice(1,visitorDisplayArray.length-2);
