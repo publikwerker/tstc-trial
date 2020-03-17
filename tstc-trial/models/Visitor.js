@@ -1,63 +1,45 @@
 const mongoose = require('mongoose');
 
 const Visitor = new mongoose.Schema({
-  duration: {
-    type:Number,
-  },
-  IPAddress: {
+  appName: {
     type:String,
   },
-  navAppName: {
-    type:String,
-  },
-  navAppCodeName: {
+  appCodeName: {
     type:String
   },
-  navPlatform: {
+  platform: {
     type:String
   },
-  navProduct: {
+  product: {
     type:String
   },
-  navAppVersion: {
+  appVersion: {
     type:String
   },
-  navUserAgent: {
+  userAgent: {
     type:String
   },
-  navLanguage: {
+  language: {
     type:String
   },
-  navJavaEnabled: {
+  javaEnabled: {
     type:Boolean
   },
   hostname: {
     type:String
   },
-  visitorLocation: {
+  locale: {
     type:String
   },
-  visitorTimeZone: {
+  timeZone: {
     type:String
   },
-  viewportSize: {
-    type:Object,
-    properties: {
-      height: {
+  viewportHeight: {
         type: Number
-      },
-      width: {
+  },
+  viewportWidth: {
         type: Number
-      }
-    }
-  },
-  openPorts: {
-    type:Number,
-    default:0,
-  },
-  navigatorPlugins: {
-    type:Array,
-  },
+  }
 });
 
 module.exports = mongoose.model('Visitor', Visitor);
