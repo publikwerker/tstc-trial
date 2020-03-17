@@ -74,10 +74,11 @@ app.delete('/profile/:id', async(req,res,next) => {
 });
 
 app.post('/visitor', async (req,res) => {
+  console.log(req.body);
   try {
     let visitor = new Visitor(req.body);
     let result = await visitor.save();
-    res.send(`Posting visitor info to database! ${result}`)   
+    res.send(`Visitating! ${result}`)   
   } catch (err) {
     res.status(500).send(err);
   }

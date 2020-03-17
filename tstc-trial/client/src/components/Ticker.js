@@ -10,7 +10,7 @@ export default class Ticker extends Component {
     }
   }
 
-  async componentDidMount(){
+  componentDidMount(){
 
     var w = window.innerWidth
     || document.documentElement.clientWidth
@@ -20,37 +20,42 @@ export default class Ticker extends Component {
     || document.documentElement.clientHeight
     || document.body.clientHeight;
 
-    try {
-      this.setState({
-        
-        visitorObject : {
-          appName : navigator.appName,
-          appCodeName : navigator.appCodeName,
-          platform : navigator.platform,
-          product : navigator.product,
-          appVersion : navigator.appVersion,
-          userAgent : navigator.userAgent,
-          language : navigator.language,
-          onLine : navigator.onLine,
-          javaEnabled : navigator.javaEnabled(),
-          hostname : window.location.hostname,
-          locale : Intl.DateTimeFormat().resolvedOptions().locale,
-          timeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
+    this.setState({
+      visitorObject : {
+        appName : navigator.appName,
+        appCodeName : navigator.appCodeName,
+        platform : navigator.platform,
+        product : navigator.product,
+        appVersion : navigator.appVersion,
+        userAgent : navigator.userAgent,
+        language : navigator.language,
+        onLine : navigator.onLine,
+        javaEnabled : navigator.javaEnabled(),
+        hostname : window.location.hostname,
+        locale : Intl.DateTimeFormat().resolvedOptions().locale,
+        timeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
           viewportHeight : h,
-          viewportWidth : w
-          //openPorts,navigatorPlugins,IPAddress
-        }
-      });
-      const response = await axios({
-        method:'post',
-        url:' http://localhost:8080/visitor',
-        data: this.state.visitorObject
-      });
-      console.log(response);
-    } catch (err) {
-      console.log(err)
-    }
+        viewportWidth : w
+        //openPorts,navigatorPlugins,IPAddress
+      }
+    })
   }
+
+  componentDidUpdate(){
+    axios({
+      method:'post',
+      url:'http://localhost:8080/visitor',
+      data: this.state.visitorObject
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  }
+
   visitorDisplayString = "";
 
 
