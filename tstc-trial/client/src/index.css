@@ -41,15 +41,15 @@ html {
     background-color: aliceblue;
     color: black;
     border: 7px ridge darkgrey;
-  }
-
-  #title-text {
-    font-size: 5vw;
+    font-family: 'VT323', monospace;
   }
 
   .typewriter h1 {
     overflow: hidden; /* Ensures the content is not revealed until the animation */
-    font-size: 4vw;
+    font-family: 'PT Mono', monospace;
+    font-weight: 100;
+    font-size: 3.5vw;
+    letter-spacing: -4px;
     color: rgb(102, 255, 0);
     border-right: .15em solid rgb(102, 255, 0); /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
