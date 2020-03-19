@@ -1,9 +1,30 @@
-import React from 'react';
+import React, {Component} from 'react';
+const axios = require('axios');
 
-export default function Blogs (){
-  return (
-    <div className="blogs">
-      <h2>This will be the blogs.</h2>
-    </div>
-  )
+export default class Blogs extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      blogs: []
+    }
+  }  
+
+  componentDidMount(){
+    axios.get('http://localhose:8080/blogs')
+    .then(function(response) {
+      console.log(response);
+      this.setState(this.state,{blogs: response})
+    }).catch((err)=>{
+    console.log(err)
+  });
+}
+
+  render(){
+    return (
+      <div className="blogs">
+        <h2>Space-Time Blogs</h2>
+        <h3>Personal experiences with altered time and space.</h3>
+      </div>
+    )
+  }
 }

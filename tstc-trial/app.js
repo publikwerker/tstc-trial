@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 const Profile = require( "./models/Profile");
 const Visitor = require("./models/Visitor");
+const Blog = require("./models/Blog");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
@@ -34,6 +35,16 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req,res) => res.send('tstc is online!'));
+
+app.get('/blogs', async(req, res, next) => {
+  try {
+    let result = await Blog.find().exec();
+    console.log(result);
+    res.send(result);
+  } catch (err) {
+    res.status(500).send(err);
+  };
+});
 
 app.get('/profiles', async(req,res,next) => {
   try {
