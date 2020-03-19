@@ -36,14 +36,13 @@ app.use((req, res, next) => {
 
 app.get('/', (req,res) => res.send('tstc is online!'));
 
-app.get('/blogs', async(req, res, next) => {
-  try {
-    let result = await Blog.find().exec();
-    console.log(result);
-    res.send(result);
-  } catch (err) {
-    res.status(500).send(err);
-  };
+app.get('/blogs', (req, res) => {
+    Blog.find({}, (err, data) => {
+      if (err) {
+        console.log(err);
+      } else (
+        res.send(data)
+      )})
 });
 
 app.get('/profiles', async(req,res,next) => {

@@ -10,10 +10,10 @@ export default class Blogs extends Component {
   }  
 
   componentDidMount(){
-    axios.get('http://localhose:8080/blogs')
+    axios.get('http://localhost:8080/blogs')
     .then(function(response) {
       console.log(response);
-      this.setState(this.state,{blogs: response})
+      this.setState({blogs: response})
     }).catch((err)=>{
     console.log(err)
   });
