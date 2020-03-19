@@ -11,15 +11,17 @@ export default class Blogs extends Component {
 
   componentDidMount(){
     axios.get('http://localhost:8080/blogs')
-    .then(function(response) {
+    .then((response) => {
       console.log(response);
-      this.setState({blogs: response})
+      this.setState({blogs: response.data})
     }).catch((err)=>{
     console.log(err)
   });
 }
 
   render(){
+
+    
     return (
       <div className="blogs">
         <h2>Space-Time Blogs</h2>
