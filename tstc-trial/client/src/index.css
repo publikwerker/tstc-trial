@@ -11,11 +11,6 @@ html {
   margin: 0;
 }
 
-.banner-box {
-  width: 100%;
-  text-align: center;
-}
-
 .blogs, .stories {
   display: inline-block;
   border: .9rem solid white;
@@ -30,6 +25,7 @@ html {
   height: 100%;
   background-attachment: fixed;
   background-image: url('./images/tstcBackground2.gif');
+  background-repeat: repeat-y;
   position: relative;
   text-align: center;
   padding: 0rem 1rem;
@@ -47,13 +43,14 @@ html {
   header {
     width: 100%;
     display: inline-block;
+    text-align: center;
   }
 
   .ticker-box {
     width: 100%;
   }
 
-  #ticker {
+  .ticker {
     background-color: aliceblue;
     color: black;
     border: .5rem ridge darkgrey;
@@ -89,16 +86,10 @@ html {
   }
 
   @media only screen and (min-width: 1024px){
-    .banner-box {
+    .ticker-box {
       width: 80%;
       margin: 0 auto;
       text-align: center;
-    }
-
-    .typewriter-box {
-      width: 80%;
-      max-width: 100rem;
-      margin: 0 auto;
     }
 
     .typewriter h1 {
@@ -106,6 +97,8 @@ html {
       font-family: 'PT Mono', monospace;
       font-weight: 100;
       font-size: 2rem;
+      width: 80%;
+      max-width: 100rem;
       letter-spacing: -1rem;
       color: rgb(102, 255, 0);
       border-right: .15em solid rgb(102, 255, 0); /* The typwriter cursor */

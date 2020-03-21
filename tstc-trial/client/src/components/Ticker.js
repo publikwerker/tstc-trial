@@ -78,18 +78,16 @@ export default class Ticker extends Component {
     (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.` : ` Your ${pair[0]} variable is blank.`));
 
     return (
-      <div className="banner-box">
-        <div className="ticker-box">
-          <div id="ticker"       
-            style={{
-              width: '100%',
-              padding: '.5rem 0',
-              fontSize: '1.3rem',
-              whiteSpace: 'nowrap',
-              direction: 'left',
-            }}>
-            <Marquee>Hey! Your browser exposes the following: {this.visitorDisplayString} -- thought you should know...</Marquee>
-          </div>
+      <div className="ticker-box">
+        <div className="ticker"       
+          style={{
+            width: '100%',
+            padding: '.5rem 0',
+            fontSize: '1.3rem',
+            whiteSpace: 'nowrap',
+            direction: 'left',
+          }}>
+          <Marquee>Hey! Your browser exposes the following: {this.visitorDisplayString} -- thought you should know...</Marquee>
         </div>
       </div>
     );
