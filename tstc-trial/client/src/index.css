@@ -56,7 +56,7 @@ html {
   #ticker {
     background-color: aliceblue;
     color: black;
-    border: 7px ridge darkgrey;
+    border: .5rem ridge darkgrey;
     font-family: 'VT323', monospace;
   }
 
@@ -64,12 +64,12 @@ html {
     overflow: hidden; /* Ensures the content is not revealed until the animation */
     font-family: 'PT Mono', monospace;
     font-weight: 100;
-    font-size: 3.5vw;
-    letter-spacing: -4px;
+    font-size: 2rem;
+    letter-spacing: -1.5rem;
     color: rgb(102, 255, 0);
     border-right: .15em solid rgb(102, 255, 0); /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
-    margin: 10rem auto 3rem; /* Gives that scrolling effect as the typing happens */
+    margin: 2rem auto 3rem; /* Gives that scrolling effect as the typing happens */
     letter-spacing: .15em; /* Adjust as needed */
     animation: 
       typing 5.5s steps(40, end),
@@ -86,4 +86,35 @@ html {
   @keyframes blink-caret {
     from, to { border-color: transparent }
     50% { border-color: rgb(105, 255,0); }
+  }
+
+  @media only screen and (min-width: 1024px){
+    .banner-box {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .typewriter-box {
+      width: 80%;
+      max-width: 100rem;
+      margin: 0 auto;
+    }
+
+    .typewriter h1 {
+      overflow: hidden; /* Ensures the content is not revealed until the animation */
+      font-family: 'PT Mono', monospace;
+      font-weight: 100;
+      font-size: 2rem;
+      letter-spacing: -1rem;
+      color: rgb(102, 255, 0);
+      border-right: .15em solid rgb(102, 255, 0); /* The typwriter cursor */
+      white-space: nowrap; /* Keeps the content on a single line */
+      margin: 2rem auto 3rem; /* Gives that scrolling effect as the typing happens */
+      letter-spacing: .15em; /* Adjust as needed */
+      animation: 
+        typing 5.5s steps(40, end),
+        blink-caret 1s step-end infinite;
+    }
+
   }

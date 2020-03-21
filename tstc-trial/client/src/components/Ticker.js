@@ -83,12 +83,12 @@ export default class Ticker extends Component {
           <div id="ticker"       
             style={{
               width: '100%',
-              padding: '5px',
+              padding: '.5rem 0',
               fontSize: '1.3rem',
               whiteSpace: 'nowrap',
               direction: 'left',
             }}>
-            <Marquee>Notice: Your browser is exposing the following information: {this.visitorDisplayString}</Marquee>
+            <Marquee>Hey! Your browser exposes the following: {this.visitorDisplayString} -- thought you should know...</Marquee>
           </div>
         </div>
       </div>
