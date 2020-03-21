@@ -9,13 +9,17 @@ body {
 
 html {
   margin: 0;
+  font-family: 'PT Mono', monospace;
+  font-weight: 100;
 }
 
-.blogs, .stories {
+.blogs, .stories, .collective {
   display: inline-block;
-  border: .9rem solid white;
-  padding: 10rem;
-  margin: 0rem auto;
+  border: .7rem solid white;
+  padding: 2rem;
+  margin: 0rem auto 2rem;
+  width: 80%;
+  max-width: 100rem;
   background-color: rgba(47, 79, 79, .9);
   max-width: 100%;
 }
@@ -28,22 +32,27 @@ html {
   background-repeat: repeat-y;
   position: relative;
   text-align: center;
-  padding: 0rem 1rem;
+  padding: 0rem;
   background-size: cover;
   background-position: top;
   z-index: -3; }
 
   footer {
     width:100%;
+    height: 10rem;
     background-color: black;
     color:white;
-    bottom: 0rem;
+    bottom: -5rem;
   }
 
   header {
     width: 100%;
     display: inline-block;
     text-align: center;
+  }
+
+  .subtitle-text {
+    font-size: 1.5rem;
   }
 
   .ticker-box {
@@ -57,16 +66,18 @@ html {
     font-family: 'VT323', monospace;
   }
 
-  .typewriter h1 {
+  .typewriter {
+    color: rgb(102, 255, 0);
+    padding: 2rem auto 3rem;
+    margin: 0 auto;
+  }
+
+  .title-text {
     overflow: hidden; /* Ensures the content is not revealed until the animation */
-    font-family: 'PT Mono', monospace;
-    font-weight: 100;
     font-size: 2rem;
     letter-spacing: -1.5rem;
-    color: rgb(102, 255, 0);
     border-right: .15em solid rgb(102, 255, 0); /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
-    margin: 2rem auto 3rem; /* Gives that scrolling effect as the typing happens */
     letter-spacing: .15em; /* Adjust as needed */
     animation: 
       typing 5.5s steps(40, end),
