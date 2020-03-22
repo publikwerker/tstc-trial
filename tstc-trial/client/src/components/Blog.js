@@ -8,24 +8,25 @@ export default class Blog extends Component {
       ...props.data
     }
   }
-
-  handleClick = (e) => {
-    e.preventDefault();
-    this.setState((state) => ({expand: !this.state.expand}));
+  
+  handleClick(){
+    console.log("clicked");
+    this.setState((state) => {
+      return {expand: !state.expand}});
   }
-
+  
   render () {
     console.log('blog ran');
     console.log(this.state);
       if (this.state.expand===false) {
-        return (<div className="oneBlog" onClick={e=>this.handleClick(e)}>
-        <h2 className="oneBlog_title">{this.state.title}</h2>
+        return (<div className="oneBlog">
+        <h2 className="oneBlog_title">{this.state.title}</h2>          <button onClick={this.handleClick.bind(this)}>More</button>
       </div>)
       } else {
-        return (<div className="oneBlog" onClick={e=>this.handleClick(e)}>
+        return (<div className="oneBlog">
           <h2 className="oneBlog_title">{this.state.title}</h2>
           <p className="oneBlog_body">{this.state.content}</p>
-          <button onClick={e=>this.handleClick(e)}>Less</button>
+          <button onClick={this.handleClick}>Less</button>
         </div>)
       }
   }

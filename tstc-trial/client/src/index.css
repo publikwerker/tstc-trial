@@ -5,6 +5,7 @@
 body { 
   margin:0;
   top:0;
+  background-color: #160f0c;
 }
 
 html {
@@ -40,9 +41,8 @@ html {
   footer {
     width:100%;
     height: 10rem;
-    background-color: black;
     color:white;
-    bottom: -5rem;
+    bottom: 0;
   }
 
   header {
