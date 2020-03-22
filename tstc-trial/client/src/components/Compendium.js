@@ -8,11 +8,13 @@ export default class Compendium extends Component {
   
   render() {
     return (
-      <div className="compendium">
-          <Header />
-          <Body />
-          <Footer />
-      </div>
+      <BrowserRouter>
+        <div className="compendium">
+            <Header />
+            <Body />
+            <Footer />
+        </div>
+      </BrowserRouter>
     );
   }
 }
