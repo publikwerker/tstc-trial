@@ -40,9 +40,19 @@ app.get('/blogs', (req, res) => {
     Blog.find({}, (err, data) => {
       if (err) {
         console.log(err);
-      } else (
-        res.send(data)
-      )})
+      } else {
+        res.send(data);
+      }});
+});
+
+app.get('/collective', (req, res) => {
+  Collective.find({}, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(data);
+    };
+  });
 });
 
 app.get('/profiles', async(req,res,next) => {
@@ -82,6 +92,16 @@ app.delete('/profile/:id', async(req,res,next) => {
     res.status(500).send(err);
   }
 });
+
+app.get('/stories', (req, res => {
+  Stories.find({}, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send(data);
+    };
+  });
+}));
 
 app.post('/visitor', async (req,res) => {
   console.log(req.body);
