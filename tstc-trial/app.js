@@ -95,7 +95,7 @@ app.delete('/profile/:id', async(req,res,next) => {
   }
 });
 
-app.get('/stories', (req, res => {
+app.get('/stories', (req, res) => {
   Stories.find({}, (err, data) => {
     if (err) {
       console.log(err);
@@ -103,7 +103,7 @@ app.get('/stories', (req, res => {
       res.send(data);
     };
   });
-}));
+});
 
 app.post('/visitor', async (req,res) => {
   console.log(req.body);
