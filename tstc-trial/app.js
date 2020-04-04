@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const app = express();
+const URI = process.env.MONGODB_URI ||'mongodb://localhost/tstc-trial';
 const port = process.env.PORT || 8080;
 const Profile = require( "./models/Profile");
 const Visitor = require("./models/Visitor");
@@ -12,20 +13,28 @@ const Story = require("./models/Story");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
 
-mongoose.connect('mongodb://localhost/tstc-trial')
+var options = {
+  "server" : {
+    "socketOptions" : {
+      "keepAlive" : 300000,
+      "connectTimeoutMS" : 30000
+    }
+  },
+  "replset" : {
+    "socketOptions" : {
+      "keepAlive" : 300000,
+      "connectTimeoutMS" : 30000
+    }
+  }
+}
 
-// const config = {
-// 	db: { 					// Database configuration. 
-//     url: 'mongodb://localhost/tstc-trial',
-//     type: 'mongo',
-// 		onError: (err) => {
-// 			console.log('DB Connection Failed!')
-// 		},
-// 		onSuccess: () => {
-// 			console.log('DB Successfully Connected!')
-// 		}
-// 	}
-// }
+mongoose.connect(URI, options);
+
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.on('success', () => {console, 'DB successfully connected!'});
+
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'client/build')));
 
