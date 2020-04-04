@@ -14,7 +14,7 @@ html {
   font-weight: 100;
 }
 
-.blogs, .stories, .collective {
+.blogs, .stories, .collective, .mediaWiki {
   display: inline-block;
   border: .7rem solid white;
   padding: 2rem;

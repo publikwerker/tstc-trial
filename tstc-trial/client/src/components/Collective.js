@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function Collective () {
   return (
-    <div>
-      <p>This is for the collective experience.</p>
+    <div className="collective">
+      <h2>This is for the collective experience.</h2>
     </div>
   )
 }
