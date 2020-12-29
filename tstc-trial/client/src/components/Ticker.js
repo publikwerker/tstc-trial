@@ -20,8 +20,11 @@ export default class Ticker extends Component {
     || document.documentElement.clientHeight
     || document.body.clientHeight;
 
+    var today = new Date();
+
     this.setState({
       visitorObject : {
+        hitDate : today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(),
         appName : navigator.appName,
         appCodeName : navigator.appCodeName,
         platform : navigator.platform,
@@ -48,7 +51,7 @@ export default class Ticker extends Component {
       data: this.state.visitorObject
     })
     .then(function (response) {
-      console.log(response);
+      console.log(response, "this is the axios response");
     })
     .catch(function (error) {
       console.log(error);

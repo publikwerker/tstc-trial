@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const Visitor = new mongoose.Schema({
+  hitDate: {
+    type:Date
+  },
   appName: {
     type:String,
   },
