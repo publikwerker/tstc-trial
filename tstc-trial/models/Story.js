@@ -15,6 +15,16 @@ const Story = new mongoose.Schema({
     type:String,
     trim:true,
     required:true
+  }, 
+  created_at: { 
+    type: Date, 
+    required: true, 
+    default: Date.now 
+  }, 
+  updated_at: { 
+    type: Date, 
+    required: true, 
+    default: Date.now 
   }
 });
 
