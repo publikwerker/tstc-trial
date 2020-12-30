@@ -46,7 +46,7 @@ var MYSQLConnection = mysql.createConnection({
   port: process.env.MYSQL_CONNECTION_PORT,
   user: process.env.MYSQL_CONNECTION_USER,
   password: process.env.MYSQL_CONNECTION_PASSWORD,
-  database: "visitorLog_db"
+  database: "visitor_log_db"
 });
 
 // Initiate MySQL Connection.
@@ -70,6 +70,7 @@ app.use((req, res, next) => {
 
 app.get('/', (req,res) => res.send('tstc is online!'));
 
+//Mongo DB
 app.get('/blogs', (req, res) => {
     Blog.find({}, (err, data) => {
       if (err) {
@@ -79,6 +80,7 @@ app.get('/blogs', (req, res) => {
       }});
 });
 
+//Mongo DB
 app.get('/collective', (req, res) => {
   Collective.find({}, (err, data) => {
     if (err) {
@@ -89,6 +91,7 @@ app.get('/collective', (req, res) => {
   });
 });
 
+//Mongo DB
 app.get('/profiles', async(req,res,next) => {
   try {
     let result = await Profile.find().exec();
@@ -98,6 +101,7 @@ app.get('/profiles', async(req,res,next) => {
   }
 });
 
+//Mongo DB
 app.get('/profile/:id', async(req,res,next) => {
   try {
     let profile = await Profile.findById(req.params.id).exec();
@@ -107,6 +111,7 @@ app.get('/profile/:id', async(req,res,next) => {
   }
 });
 
+//Mongo DB
 app.put('/profile/:id', async(req,res,next) => {
   try {
     let profile = await Profile.findById(req.params.id).exec();
@@ -118,6 +123,7 @@ app.put('/profile/:id', async(req,res,next) => {
   }
 });
 
+//Mongo DB
 app.delete('/profile/:id', async(req,res,next) => {
   try {
     let result = await Profile.deleteOne({ _id: req.params.id }).exec();
@@ -127,6 +133,7 @@ app.delete('/profile/:id', async(req,res,next) => {
   }
 });
 
+//Mongo DB
 app.get('/stories', (req, res) => {
   Stories.find({}, (err, data) => {
     if (err) {
@@ -137,17 +144,7 @@ app.get('/stories', (req, res) => {
   });
 });
 
-app.post('/visitor', async (req,res) => {
-  console.log(req.body);
-  try {
-    let visitor = new Visitor(req.body);
-    let result = await visitor.save();
-    res.send(`Visitating! ${result}`)   
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-
+//Mongo DB
 app.post('/user', async (req,res,next) => {
   try {
     let user = new Profile(req.body);
@@ -160,13 +157,53 @@ app.post('/user', async (req,res,next) => {
 
 //  res.send(`Posting new user profile to database!`));
 
+//Mongo DB
 app.put('/user', function(req,res) {
   res.send(`Updating user profile in database!`)
 });
 
+//Mongo DB
 app.delete('/user', (req,res) => {
   res.send(`Deleting user profile from database!`)
 });
+
+//Mongo DB
+app.post('/visitor', async (req,res) => {
+  console.log(req.body);
+  try {
+    let visitor = new Visitor(req.body);
+    let result = await visitor.save();
+    res.send(`Visitating! ${result}`)   
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+//MYSQL 
+/*
+app.get('/visitor', async (req,res) => {
+  console.log(req.body);
+  try {
+    let visitor = new Visitor(req.body);
+    let result = await visitor.save();
+    res.send(`Visitating! ${result}`)   
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+
+app.post('/visitor', async (req,res) => {
+  console.log(req.body);
+  try {
+    let visitor = new Visitor(req.body);
+    let result = await visitor.save();
+    res.send(`Visitating! ${result}`)   
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+*/ 
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
