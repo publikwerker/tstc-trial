@@ -1,6 +1,9 @@
+require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const mysql = require("mysql");
 const app = express();
 const URI = process.env.MONGODB_URI ||'mongodb://localhost/tstc-trial';
 const port = process.env.PORT || 8080;
@@ -13,6 +16,8 @@ const Story = require("./models/Story");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
 
+
+//MONGODB Connection Information
 var options = {
   "server" : {
     "socketOptions" : {
@@ -32,8 +37,26 @@ mongoose.connect(URI, options);
 
 var db = mongoose.connection;
 
-db.on('error', console.error.bind(console, 'connection error:'));
-db.on('success', () => {console, 'DB successfully connected!'});
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.on('success', () => {console, 'MongoDB successfully connected!'});
+
+// MySQL DB Connection Information 
+var MYSQLConnection = mysql.createConnection({
+  host: process.env.MYSQL_CONNECTION_HOST,
+  port: process.env.MYSQL_CONNECTION_PORT,
+  user: process.env.MYSQL_CONNECTION_USER,
+  password: process.env.MYSQL_CONNECTION_PASSWORD,
+  database: "visitorLog_db"
+});
+
+// Initiate MySQL Connection.
+MYSQLConnection.connect(function(err) {
+  if (err) {
+    console.error("error connecting to MYSQL: " + err.stack);
+    return;
+  }
+  console.log("connected to MYSQL as id " + MYSQLConnection.threadId);
+});
 
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'client/build')));
