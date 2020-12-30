@@ -187,7 +187,7 @@ app.post('/visitor', async (req,res) => {
 //MYSQL 
 
 app.get('/visitor', (req,res) => {
-  console.log(req.body, "This is the req.body variable");
+  console.log(req.body, "**************************This is the req.body variable from /visitor GET");
   MYSQLConnection.query("SELECT * FROM visitor_hits", function(err, result) {
     if (err) throw err;
     console.log(result, "this is the result variable");
@@ -198,21 +198,57 @@ app.get('/visitor', (req,res) => {
 
 
 app.post('/visitor', (req,res) => {
-  console.log(req.body);
+  console.log(req.body, "**************************this is the req.body from /visitor POST");
+  const { 
+    hitDate, 
+    appName, 
+    appCodeName, 
+    platform, 
+    product, 
+    appVersion, 
+    userAgent, 
+    language,
+    onLine,
+    javaEnabled,
+    hostname,
+    locale, 
+    timeZone, 
+    viewportHeight, 
+    viewportWidth } = req.body;
 
-  /*
-  connection.query("INSERT INTO visitor_hits (visitorObject) VALUES (?)", [req.body.data], function(err, result) {
+    console.log(hitDate, 
+      appName, 
+      appCodeName, 
+      platform, 
+      product, 
+      appVersion, 
+      userAgent, 
+      language,
+      onLine,
+      javaEnabled,
+      hostname,
+      locale, 
+      timeZone, 
+      viewportHeight, 
+      viewportWidth);
+      console.log(Object.keys(req.body));
+      const queryString = "INSERT INTO visitor_hits (" + Object.keys(req.body) + ") VALUES ('" + hitDate + "','"+ appName + "','"+ appCodeName + "','" + platform + "','" + product + "','" + appVersion + "','" + userAgent + "','" + language + "'," + onLine + "," + javaEnabled + ",'" + hostname + "','" + locale + "','" + timeZone + "'," + viewportHeight + "," + viewportWidth + ");"
+
+      console.log("QueryString: ***********", queryString);
+
+  MYSQLConnection.query(queryString, function(err, result) {
     if (err) {
       return res.status(500).end();
     }
-  */
-  console.log(res);
-  // Send back the ID of the new plan
-  res.json(res);
+ 
+    console.log(result);
+    // Send back the ID of the new plan
+    res.json(result);
 
+  });
 });
 
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
-module.exports = app
+module.exports = app;

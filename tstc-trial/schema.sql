@@ -18,6 +18,7 @@ CREATE TABLE visitor_hits (
   appVersion VARCHAR(150),
   userAgent VARCHAR(150),
   language VARCHAR(30),
+  onLine: BOOLEAN,
   javaEnabled BOOLEAN,
   hostname VARCHAR(30),
   locale VARCHAR(30),
