@@ -12,6 +12,10 @@ const Visitor = require("./models/Visitor");
 const Blog = require("./models/Blog");
 const Collective = require("./models/Collective");
 const Story = require("./models/Story");
+const HOST = process.env.MYSQL_CONNECTION_HOST;
+const PORT = process.env.MYSQL_CONNECTION_PORT;
+const USER = process.env.MYSQL_CONNECTION_USER;
+const PASSWORD = process.env.MYSQL_CONNECTION_PASSWORD;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
@@ -42,10 +46,10 @@ db.on('success', () => {console, 'MongoDB successfully connected!'});
 
 // MySQL DB Connection Information 
 var MYSQLConnection = mysql.createConnection({
-  host: process.env.MYSQL_CONNECTION_HOST,
-  port: process.env.MYSQL_CONNECTION_PORT,
-  user: process.env.MYSQL_CONNECTION_USER,
-  password: process.env.MYSQL_CONNECTION_PASSWORD,
+  host: HOST,
+  port: PORT,
+  user: USER,
+  password: PASSWORD,
   database: "visitor_log_db"
 });
 
@@ -167,6 +171,7 @@ app.delete('/user', (req,res) => {
   res.send(`Deleting user profile from database!`)
 });
 
+/*
 //Mongo DB
 app.post('/visitor', async (req,res) => {
   console.log(req.body);
@@ -178,32 +183,35 @@ app.post('/visitor', async (req,res) => {
     res.status(500).send(err);
   }
 });
-
+*/
 //MYSQL 
-/*
-app.get('/visitor', async (req,res) => {
-  console.log(req.body);
-  try {
-    let visitor = new Visitor(req.body);
-    let result = await visitor.save();
-    res.send(`Visitating! ${result}`)   
-  } catch (err) {
-    res.status(500).send(err);
-  }
+
+app.get('/visitor', (req,res) => {
+  console.log(req.body, "This is the req.body variable");
+  MYSQLConnection.query("SELECT * FROM visitor_hits", function(err, result) {
+    if (err) throw err;
+    console.log(result, "this is the result variable");
+    res.send(result);
+  });
+
 });
 
 
-app.post('/visitor', async (req,res) => {
+app.post('/visitor', (req,res) => {
   console.log(req.body);
-  try {
-    let visitor = new Visitor(req.body);
-    let result = await visitor.save();
-    res.send(`Visitating! ${result}`)   
-  } catch (err) {
-    res.status(500).send(err);
-  }
+
+  /*
+  connection.query("INSERT INTO visitor_hits (visitorObject) VALUES (?)", [req.body.data], function(err, result) {
+    if (err) {
+      return res.status(500).end();
+    }
+  */
+  console.log(res);
+  // Send back the ID of the new plan
+  res.json(res);
+
 });
-*/ 
+
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
