@@ -184,8 +184,9 @@ app.post('/visitor', async (req,res) => {
   }
 });
 */
-//MYSQL 
 
+
+//MYSQL 
 app.get('/visitor', (req,res) => {
   console.log(req.body, "**************************This is the req.body variable from /visitor GET");
   MYSQLConnection.query("SELECT * FROM visitor_hits", function(err, result) {
@@ -196,9 +197,7 @@ app.get('/visitor', (req,res) => {
 
 });
 
-
 app.post('/visitor', (req,res) => {
-  console.log(req.body, "**************************this is the req.body from /visitor POST");
   const { 
     hitDate, 
     appName, 
@@ -231,10 +230,12 @@ app.post('/visitor', (req,res) => {
       timeZone, 
       viewportHeight, 
       viewportWidth);
-      console.log(Object.keys(req.body));
+
+      // console.log(Object.keys(req.body));
+
       const queryString = "INSERT INTO visitor_hits (" + Object.keys(req.body) + ") VALUES ('" + hitDate + "','"+ appName + "','"+ appCodeName + "','" + platform + "','" + product + "','" + appVersion + "','" + userAgent + "','" + language + "'," + onLine + "," + javaEnabled + ",'" + hostname + "','" + locale + "','" + timeZone + "'," + viewportHeight + "," + viewportWidth + ");"
 
-      console.log("QueryString: ***********", queryString);
+      // console.log("QueryString: ***********", queryString);
 
   MYSQLConnection.query(queryString, function(err, result) {
     if (err) {
@@ -243,8 +244,7 @@ app.post('/visitor', (req,res) => {
  
     console.log(result);
     // Send back the ID of the new plan
-    res.json(result);
-
+    res.json(result.status);
   });
 });
 
