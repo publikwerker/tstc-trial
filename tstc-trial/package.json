@@ -47,7 +47,9 @@
     "vary": "^1.1.2"
   },
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "express": "latest",
+    "mysql": "^2.18.1",
     "nodemon": "^1.17.1"
   },
   "format": "vertex"
