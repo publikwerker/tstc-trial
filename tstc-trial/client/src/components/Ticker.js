@@ -6,7 +6,8 @@ export default class Ticker extends Component {
   constructor(props){
     super(props);
     this.state = {
-      visitorObject: {}
+      visitorObject: {},
+      infoVis: false
     }
   }
 
@@ -64,6 +65,10 @@ export default class Ticker extends Component {
 
   render(){
 
+    const handleClick = (event) => {
+
+    }
+
     // allow access to key names as strings
     let visitorDisplayArray = JSON.stringify(this.state.visitorObject);
 
@@ -80,6 +85,10 @@ export default class Ticker extends Component {
     this.visitorDisplayString = visitorDisplayArray.map( pair =>
     (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.` : ` Your ${pair[0]} variable is blank.`));
 
+    //create string to display in Marquee
+    this.tickInfoString = visitorDisplayArray.map( pair =>
+    (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.\n` : ` Your ${pair[0]} variable is blank.\n`));
+
     return (
       <div className="ticker-box">
         <div className="ticker"       
@@ -89,9 +98,13 @@ export default class Ticker extends Component {
             fontSize: '1.3rem',
             whiteSpace: 'nowrap',
             direction: 'left',
-          }}>
+          }}
+          onClick={() => this.setState({ infoVis: !this.state.infoVis })}>
           <Marquee>Hey! Your browser exposes the following: {this.visitorDisplayString} -- thought you should know...</Marquee>
         </div>
+
+        <TickInfo props={this.tickInfoString}
+        onClick={() => this.setState({ infoVis: !this.state.infoVis })}/>
       </div>
     );
   }
