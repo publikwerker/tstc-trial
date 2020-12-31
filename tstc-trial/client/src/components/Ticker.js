@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React, { useState, Component } from 'react';
 import Marquee from 'react-double-marquee';
+import TickInfo from './TickInfo';
 const axios = require('axios');
 
 export default class Ticker extends Component {
@@ -43,6 +44,7 @@ export default class Ticker extends Component {
         //openPorts,navigatorPlugins,IPAddress
       }
     })
+    
   }
 
   componentDidUpdate(){
@@ -61,13 +63,15 @@ export default class Ticker extends Component {
   }
 
   visitorDisplayString = "";
-
+  
+  handleClick(){
+    this.setState({ 
+      infoVis: !this.state.infoVis 
+    });
+  }
 
   render(){
-
-    const handleClick = (event) => {
-
-    }
+    var TickInfoElem;
 
     // allow access to key names as strings
     let visitorDisplayArray = JSON.stringify(this.state.visitorObject);
@@ -85,12 +89,20 @@ export default class Ticker extends Component {
     this.visitorDisplayString = visitorDisplayArray.map( pair =>
     (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.` : ` Your ${pair[0]} variable is blank.`));
 
-    //create string to display in Marquee
+    //create string to display in TickInfo
     this.tickInfoString = visitorDisplayArray.map( pair =>
     (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.\n` : ` Your ${pair[0]} variable is blank.\n`));
 
+    //pass string to TickInfo, conditionally    
+    if(this.state.infoVis === true) {
+      TickInfoElem = <TickInfo className="ticker" props={this.tickInfoString} />
+    } else {
+      TickInfoElem = <div />
+    }
+
     return (
-      <div className="ticker-box">
+      <div className="ticker-box"
+        onClick={this.handleClick}>
         <div className="ticker"       
           style={{
             width: '100%',
@@ -99,12 +111,12 @@ export default class Ticker extends Component {
             whiteSpace: 'nowrap',
             direction: 'left',
           }}
-          onClick={() => this.setState({ infoVis: !this.state.infoVis })}>
+          onClick={() => this.handleClick()}>
           <Marquee>Hey! Your browser exposes the following: {this.visitorDisplayString} -- thought you should know...</Marquee>
         </div>
-
-        <TickInfo props={this.tickInfoString}
-        onClick={() => this.setState({ infoVis: !this.state.infoVis })}/>
+        <div>
+          {TickInfoElem}
+        </div>
       </div>
     );
   }

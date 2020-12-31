@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Ticker from './Ticker.js';
 import Title from './Title.js';
 
