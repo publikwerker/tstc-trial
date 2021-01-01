@@ -60,7 +60,7 @@ MYSQLConnection.connect(function(err) {
     return;
   }
   console.log("connected to MYSQL as id " + MYSQLConnection.threadId);
-});
+  });
 
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -192,10 +192,20 @@ app.get('/visitor', (req,res) => {
   MYSQLConnection.query("SELECT * FROM visitor_hits", function(err, result) {
     if (err) throw err;
     console.log(result, "this is the result variable");
+
+    console.log(result.length);
     res.send(result);
   });
 
-});
+  });
+
+app.get('/visitorCount', (req,res) => {  
+    MYSQLConnection.query("SELECT Count(*) FROM visitor_hits", function(err, result) {
+    if (err) throw err;
+    console.log(result, "this is the result variable from /visitorCount");
+    res.send(result);
+    })
+  });
 
 app.post('/visitor', (req,res) => {
   const { 
@@ -241,10 +251,13 @@ app.post('/visitor', (req,res) => {
     if (err) {
       return res.status(500).end();
     }
- 
-    console.log(result, "****This is the result");
-    // Send back the ID of the new plan
-    res.json(result.status);
+
+
+    MYSQLConnection.query("SELECT Count(*) FROM visitor_hits", function(err, result) {
+      if (err) throw err;
+      res.send(result);
+    });
+
   });
 });
 

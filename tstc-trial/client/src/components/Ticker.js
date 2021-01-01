@@ -8,7 +8,7 @@ export default class Ticker extends Component {
     super(props);
     this.state = {
       visitorObject: {},
-      infoVis: false
+      infoVis: props.infoVis
     }
   }
 
@@ -49,6 +49,7 @@ export default class Ticker extends Component {
   componentDidMount(){
     this.postVisitors();
   }
+
   postVisitors(){
     axios({
       method:'post',
@@ -57,6 +58,7 @@ export default class Ticker extends Component {
     })
     .then(function (response) {
       console.log(response, "this is the axios response");
+      this.setCount(response.data[0].count);
     })
     .catch(function (error) {
       console.log(error);
@@ -65,6 +67,7 @@ export default class Ticker extends Component {
   }
 
   visitorDisplayString = "";
+
   handleClick() {
     console.log("I was clicked");
     this.setState({ 
