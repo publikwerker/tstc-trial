@@ -18,7 +18,7 @@ export default class TickInfo extends React.Component {
       <div className="modal ticker">
         <h1>These are the facts</h1>
         <p>Your browser can expose semi-personal information to the World Wide Web. This includes your timezone, your location, what kind of processor your device has, what device you are using, etc.</p>
-        <p>If you wish to hide this information or protect it, consider using your computer in privacy mode.</p>
+        <p>If you wish to hide this information or to protect it, consider using your computer in privacy mode.</p>
         <p>This information is given as a public service.</p>
         <ul className="modal-ul">
           {variables}

@@ -12,7 +12,7 @@ export default class Ticker extends Component {
     }
   }
 
-  componentDidMount(){
+  componentWillMount(){
 
     var w = window.innerWidth
     || document.documentElement.clientWidth
@@ -44,10 +44,12 @@ export default class Ticker extends Component {
         //openPorts,navigatorPlugins,IPAddress
       }
     })
-    
-  }
 
-  componentDidUpdate(){
+  }
+  componentDidMount(){
+    this.postVisitors();
+  }
+  postVisitors(){
     axios({
       method:'post',
       url:'http://localhost:8080/visitor',
@@ -63,15 +65,16 @@ export default class Ticker extends Component {
   }
 
   visitorDisplayString = "";
-  
-  handleClick(){
+  handleClick() {
+    console.log("I was clicked");
     this.setState({ 
-      infoVis: !this.state.infoVis 
+      infoVis: true 
     });
   }
 
   render(){
     var TickInfoElem;
+
 
     // allow access to key names as strings
     let visitorDisplayArray = JSON.stringify(this.state.visitorObject);
@@ -101,21 +104,20 @@ export default class Ticker extends Component {
     }
 
     return (
-      <div className="ticker-box"
-        onClick={this.handleClick}>
-        <div className="ticker"       
+      <div className="ticker-box">
+        <div className="ticker"
           style={{
             width: '100%',
             padding: '.5rem 0',
             fontSize: '1.3rem',
             whiteSpace: 'nowrap',
             direction: 'left',
-          }}
-          onClick={() => this.handleClick()}>
+          }}>
           <Marquee>Hey! Your browser exposes the following: {this.visitorDisplayString} -- thought you should know...</Marquee>
         </div>
         <div>
           {TickInfoElem}
+          <button onClick={()=>this.handleClick()}>+/-</button>
         </div>
       </div>
     );

@@ -242,7 +242,7 @@ app.post('/visitor', (req,res) => {
       return res.status(500).end();
     }
  
-    console.log(result);
+    console.log(result, "****This is the result");
     // Send back the ID of the new plan
     res.json(result.status);
   });
