@@ -95,7 +95,7 @@ export default class Ticker extends Component {
 
     //pass string to TickInfo, conditionally    
     if(this.state.infoVis === true) {
-      TickInfoElem = <TickInfo className="ticker" props={this.tickInfoString} />
+      TickInfoElem = <TickInfo className="ticker" infoString={this.tickInfoString} />
     } else {
       TickInfoElem = <div />
     }

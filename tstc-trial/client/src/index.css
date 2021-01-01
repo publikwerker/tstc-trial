@@ -51,6 +51,11 @@ html {
     text-align: center;
   }
 
+  .modal-ul {
+    list-style: none;
+    text-align: left;
+  }
+
   .subtitle-text {
     font-size: 1.5rem;
   }
