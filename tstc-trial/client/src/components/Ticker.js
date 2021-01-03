@@ -7,8 +7,15 @@ export default class Ticker extends Component {
 
     state = {
       visitorObject: {},
+      count: 0
     }
  
+    setCount = (value) => {
+      this.setState({
+        ...this.state,
+        count: value
+      })
+    }
 
   componentWillMount(){
   
@@ -23,6 +30,7 @@ export default class Ticker extends Component {
     var today = new Date();
 
     this.setState({
+      ...this.state,
       visitorObject : {
         hitDate : today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(),
         appName : navigator.appName,
@@ -45,19 +53,19 @@ export default class Ticker extends Component {
 
   }
   componentDidMount(){
-    this.props.setInfo(this.state.visitorObject)
+    this.props.setInfo(this.state.visitorObject);
     this.postVisitors();
   }
 
-  postVisitors(){
+  postVisitors=()=>{
     axios({
       method:'post',
       url:'http://localhost:8080/visitor',
       data: this.state.visitorObject
     })
-    .then(function (response) {
+    .then( (response)=> {
       console.log(response, "this is the axios response");
-      this.setCount(response.data[0].count);
+      this.props.setCount(Object.values(response.data[0])[0]);
     })
     .catch(function (error) {
       console.log(error);
@@ -66,13 +74,6 @@ export default class Ticker extends Component {
   }
 
   visitorDisplayString = "";
-
-  handleClick() {
-    console.log("I was clicked");
-    this.setState({ 
-      infoVis: !this.state.infoVis 
-    });
-  }
 
   render(){
     var TickInfoElem;
