@@ -7,13 +7,11 @@ export default class Ticker extends Component {
 
     state = {
       visitorObject: {},
-      infoVis: this.props.infoVis,
-      onClick: this.props.onClick
     }
  
 
   componentWillMount(){
-
+  
     var w = window.innerWidth
     || document.documentElement.clientWidth
     || document.body.clientWidth;
@@ -47,6 +45,7 @@ export default class Ticker extends Component {
 
   }
   componentDidMount(){
+    this.props.setInfo(this.state.visitorObject)
     this.postVisitors();
   }
 
@@ -101,7 +100,7 @@ export default class Ticker extends Component {
     (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.\n` : ` Your ${pair[0]} variable is blank.\n`));
 
     //pass string to TickInfo, conditionally    
-    if(this.state.infoVis === true) {
+    if(this.props.infoVis === true) {
       TickInfoElem = <TickInfo className="ticker" infoString={this.tickInfoString} />
     } else {
       TickInfoElem = <div />
@@ -119,10 +118,7 @@ export default class Ticker extends Component {
           }}>
           <Marquee>Hey! Your browser exposes the following: {this.visitorDisplayString} -- thought you should know...</Marquee>
         </div>
-        <div>
-          {TickInfoElem}
-          <button onClick={this.state.onClick}>+/-</button>
-        </div>
+        {TickInfoElem}
       </div>
     );
   }

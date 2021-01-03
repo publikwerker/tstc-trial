@@ -8,6 +8,12 @@ export default class Header extends React.Component {
     infoVis: false
   }
 
+  setVisitorObject = (value) => {
+    this.setState({
+      visitorObject: value
+    })
+  }
+
   setInfoVis = () => {
     this.setState({
       infoVis: !this.state.infoVis
@@ -22,7 +28,8 @@ export default class Header extends React.Component {
     return (
       <header>
       <div className="ticker-box" onClick={this.setInfoVis} >
-        <Ticker infoVis={this.state.infoVis}/>
+        <Ticker setInfo={this.setVisitorObject} infoVis={this.state.infoVis}/>
+        <button type="input" onClick={this.setInfoVis}>+/-</button>
       </div>
         <Title />
       </header>
