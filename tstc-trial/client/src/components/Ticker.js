@@ -4,13 +4,13 @@ import TickInfo from './TickInfo';
 const axios = require('axios');
 
 export default class Ticker extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
+
+    state = {
       visitorObject: {},
-      infoVis: props.infoVis
+      infoVis: this.props.infoVis,
+      onClick: this.props.onClick
     }
-  }
+ 
 
   componentWillMount(){
 
@@ -71,13 +71,14 @@ export default class Ticker extends Component {
   handleClick() {
     console.log("I was clicked");
     this.setState({ 
-      infoVis: true 
+      infoVis: !this.state.infoVis 
     });
   }
 
   render(){
     var TickInfoElem;
-
+    console.log(this.state);
+    console.log(this.props)
 
     // allow access to key names as strings
     let visitorDisplayArray = JSON.stringify(this.state.visitorObject);
@@ -120,7 +121,7 @@ export default class Ticker extends Component {
         </div>
         <div>
           {TickInfoElem}
-          <button onClick={()=>this.handleClick()}>+/-</button>
+          <button onClick={this.state.onClick}>+/-</button>
         </div>
       </div>
     );
