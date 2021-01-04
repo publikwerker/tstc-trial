@@ -6,10 +6,10 @@ export default function Footer(props) {
 
   return (
     <footer>
-      <p className="footer-text">This is the footer.</p>
       <div className="row">
-        <div>{count} people have visited this site.</div>
+        <div className="ticker count">{count} people have visited this site.</div>
       </div>
+    <p className="footer-text">All content Copyright &copy; 2021 Publikwerks, LLC</p>
     </footer>
   )
 }

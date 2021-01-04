@@ -39,7 +39,7 @@ export default class Header extends React.Component {
     return (
       <header>
       <div className="ticker-box" onMouseEnter={this.setInfoVis} onMouseLeave={this.setInfoVis}>
-        <Ticker setCount={this.setCount} setInfo={this.setVisitorObject} infoVis={this.state.infoVis}/>
+        <Ticker setCount={this.props.setCount} setInfo={this.setVisitorObject} infoVis={this.state.infoVis}/>
         <button type="button" onClick={this.setInfoVis}>+/-</button>
       </div>
         <Title />

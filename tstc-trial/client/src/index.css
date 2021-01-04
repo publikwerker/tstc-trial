@@ -38,8 +38,13 @@ button {z-index: 100000;}
   padding: 0rem;
   background-size: cover;
   background-position: top;
-  z-index: -3; }
+  z-index: -3; 
+}
 
+.count {
+  width: 200px;
+  margin: 0 auto;
+}
   footer {
     width:100%;
     height: 10rem;

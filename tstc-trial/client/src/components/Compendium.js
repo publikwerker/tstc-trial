@@ -5,12 +5,10 @@ import Body from './Body';
 import Footer from './Footer';
 
 export default class Compendium extends Component {
-  constructor(props){
-    super(props);
-    this.state={
+  state = {
       count: 0
     }
-  }
+
 
   setCount = (value) => {
     this.setState({
