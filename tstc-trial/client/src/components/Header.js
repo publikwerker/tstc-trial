@@ -17,6 +17,7 @@ export default class Header extends React.Component {
   }
 
   setInfoVis = () => {
+    console.log("setInfoVis was triggered");
     this.setState({
       ...this.state,
       infoVis: !this.state.infoVis
@@ -37,9 +38,9 @@ export default class Header extends React.Component {
   render(){
     return (
       <header>
-      <div className="ticker-box" onClick={this.setInfoVis} >
+      <div className="ticker-box" onMouseEnter={this.setInfoVis} onMouseLeave={this.setInfoVis}>
         <Ticker setCount={this.setCount} setInfo={this.setVisitorObject} infoVis={this.state.infoVis}/>
-        <button type="input" onClick={()=>this.setInfoVis}>+/-</button>
+        <button type="button" onClick={this.setInfoVis}>+/-</button>
       </div>
         <Title />
       </header>

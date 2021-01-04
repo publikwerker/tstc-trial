@@ -7,15 +7,8 @@ export default class Ticker extends Component {
 
     state = {
       visitorObject: {},
-      count: 0
     }
- 
-    setCount = (value) => {
-      this.setState({
-        ...this.state,
-        count: value
-      })
-    }
+
 
   componentWillMount(){
   
@@ -52,6 +45,7 @@ export default class Ticker extends Component {
     })
 
   }
+
   componentDidMount(){
     this.props.setInfo(this.state.visitorObject);
     this.postVisitors();
@@ -65,6 +59,7 @@ export default class Ticker extends Component {
     })
     .then( (response)=> {
       console.log(response, "this is the axios response");
+      console.log(Object.values(response.data[0])[0], "this is the count");
       this.props.setCount(Object.values(response.data[0])[0]);
     })
     .catch(function (error) {
