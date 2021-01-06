@@ -3,12 +3,16 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
+import Login from './Login';
 
 export default class Compendium extends Component {
   state = {
       count: 0
     }
 
+  handleClick = (word) => {
+    console.log(word);
+  }
 
   setCount = (value) => {
     this.setState({
@@ -21,6 +25,7 @@ export default class Compendium extends Component {
       <Router>
         <div className="compendium">
             <Header setCount={this.setCount}/>
+            <Login handleClick={this.handleClick} />
             <Body />
             <Footer count={this.state.count}/>
         </div>
