@@ -103,7 +103,7 @@ export default class Ticker extends Component {
     }
 
     return (
-      <div className="ticker-box">
+      <div className="ticker-box" onClick={this.props.setVis}>
         <div className="ticker"
           style={{
             width: '100%',
@@ -115,6 +115,7 @@ export default class Ticker extends Component {
           <Marquee>Hey! Your browser exposes the following: {this.visitorDisplayString} -- thought you should know...</Marquee>
         </div>
         {TickInfoElem}
+        <button onClick={this.props.setVis} className="button">+/-</button>
       </div>
     );
   }

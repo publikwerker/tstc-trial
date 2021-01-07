@@ -5,7 +5,7 @@ import Title from './Title.js';
 export default class Header extends React.Component {   
   state = {
     visitorObject: {},
-    infoVis: false,
+    infoVis: true,
     count: 0
   }
 
@@ -24,6 +24,11 @@ export default class Header extends React.Component {
     })
   }
 
+  setVis = (e) => {
+    e.preventDefault();
+    console.log("setVis was triggerd");
+  }
+
   setCount = (value) => {
     this.setState({
       ...this.state,
@@ -39,7 +44,8 @@ export default class Header extends React.Component {
     return (
       <header>
       <div className="ticker-box" onMouseEnter={this.setInfoVis} onMouseLeave={this.setInfoVis}>
-        <Ticker setCount={this.props.setCount} setInfo={this.setVisitorObject} infoVis={this.state.infoVis}/>
+        <Ticker setCount={this.props.setCount} setInfo={this.setVisitorObject} infoVis={this.state.infoVis}
+        setVis={this.setInfoVis}/>
       </div>
         <Title />
       </header>

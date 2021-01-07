@@ -2,10 +2,15 @@ import React from 'react';
 
 export default function Login(props) {
   console.log(props, "in Login");
+
+  const sayTheWord = (e) => {
+    e.preventDefault();
+    console.log("click");
+  }
   return(
     <div className="row">
-      <button onClick={props.handleClick("About")}>About</button>
-      <button onClick={props.handleClick("Login")}>Login</button>
+      <button className="button" onClick={props.handleClick}>About</button>
+      <button className="button" onClick={sayTheWord}>Login</button>
     </div>
   )
 };
