@@ -5,7 +5,7 @@ import Title from './Title.js';
 export default class Header extends React.Component {   
   state = {
     visitorObject: {},
-    infoVis: true,
+    infoVis: false,
     count: 0
   }
 
