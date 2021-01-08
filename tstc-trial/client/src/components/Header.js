@@ -1,12 +1,25 @@
 import React from 'react';
 import Ticker from './Ticker.js';
 import Title from './Title.js';
+import TickInfo from './TickInfo';
 
 export default class Header extends React.Component {   
-  state = {
-    visitorObject: {},
-    infoVis: false,
-    count: 0
+  constructor(props){
+    super(props);
+    this.state = {
+      ...props,
+      visitorDisplayString: '',
+      visitorObject: {},
+      infoVis: false,
+      count: 0
+    }
+  }
+
+  setVisitorDisplayString = (value) => {
+    this.setState({
+      ...this.state,
+      visitorDisplayString:value
+    });
   }
 
   setVisitorObject = (value) => {
@@ -41,10 +54,26 @@ export default class Header extends React.Component {
   }
 
   render(){
+    const infoButton = 
+      <button onClick={this.props.setVis} className="button">+/-</button>
+
+    let TickInfoElem = '';
+
+    if(this.state.infoVis){
+
+      TickInfoElem = <div>
+        {infoButton}
+        <TickInfo className="ticker" infoString={this.tickInfoString} />
+        {infoButton}
+      </div> 
+    } else {
+      TickInfoElem = infoButton;
+    }
     return (
       <header>
-      <div className="ticker-box" onMouseEnter={this.setInfoVis} onMouseLeave={this.setInfoVis}>
-        <Ticker setCount={this.props.setCount} setInfo={this.setVisitorObject} infoVis={this.state.infoVis}
+      <div className="ticker-box" >
+        {TickInfoElem}
+        <Ticker setCount={this.props.setCount} setVDS={this.setVisitorDisplayString} setInfo={this.setVisitorObject} infoVis={this.state.infoVis}
         setVis={this.setInfoVis}/>
       </div>
         <Title />

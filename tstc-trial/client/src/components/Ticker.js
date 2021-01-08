@@ -4,11 +4,13 @@ import TickInfo from './TickInfo';
 const axios = require('axios');
 
 export default class Ticker extends Component {
-
-    state = {
-      visitorObject: {},
+    constructor(props){
+      super(props);
+      this.state = {
+        ...props,
+        visitorObject: {},
     }
-
+  }
 
   componentWillMount(){
   
@@ -95,12 +97,8 @@ export default class Ticker extends Component {
     this.tickInfoString = visitorDisplayArray.map( pair =>
     (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.\n` : ` Your ${pair[0]} variable is blank.\n`));
 
-    //pass string to TickInfo, conditionally    
-    if(this.props.infoVis === true) {
-      TickInfoElem = <TickInfo className="ticker" infoString={this.tickInfoString} />
-    } else {
-      TickInfoElem = <div />
-    }
+    //pass string up to Header
+    //this.state.setVDS(this.tickInfoString);
 
     return (
       <div className="ticker-box" onClick={this.props.setVis}>
@@ -114,8 +112,6 @@ export default class Ticker extends Component {
           }}>
           <Marquee>Hey! Your browser exposes the following: {this.visitorDisplayString} -- thought you should know...</Marquee>
         </div>
-        {TickInfoElem}
-        <button onClick={this.props.setVis} className="button">+/-</button>
       </div>
     );
   }
