@@ -1,5 +1,4 @@
 import React, { useState, Component } from 'react';
-//import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
@@ -23,14 +22,12 @@ export default class Compendium extends Component {
   
   render() {
     return (
-    //  <Router>
-        <div className="compendium">
-            <Header setCount={this.setCount}/>
-            <Login handleClick={this.handleClick} />
-            <Body />
-            <Footer count={this.state.count}/>
-        </div>
-    //  </Router>
+      <div className="compendium">
+          <Header setCount={this.setCount}/>
+          <Login handleClick={this.handleClick} />
+          <Body />
+          <Footer count={this.state.count}/>
+      </div>
     );
   }
 }
