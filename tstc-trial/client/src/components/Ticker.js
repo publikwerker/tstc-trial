@@ -1,16 +1,16 @@
-import React, { useState, Component } from 'react';
+import React from 'react';
 import Marquee from 'react-double-marquee';
 import TickInfo from './TickInfo';
 const axios = require('axios');
 
-export default class Ticker extends Component {
+export default class Ticker extends React.Component {
     constructor(props){
       super(props);
       this.state = {
         ...props,
         visitorObject: {},
-    }
-  }
+      }
+   }
 
   componentWillMount(){
   
@@ -47,8 +47,6 @@ export default class Ticker extends Component {
         //openPorts,navigatorPlugins,IPAddress,geolocation
       }
     })
-
-
   }
 
   componentDidMount(){
@@ -72,7 +70,6 @@ export default class Ticker extends Component {
     .catch(function (error) {
       console.log(error);
     });
-
   }
 
   visitorDisplayString = "";
@@ -106,7 +103,8 @@ export default class Ticker extends Component {
     this.props.setVDS(tickInfoString);
 
     return (
-      <div className="ticker-box" onClick={this.props.setVis}>
+      <div className="ticker-box" 
+        onClick={this.props.setVis}>
         <div className="ticker"
           style={{
             width: '100%',

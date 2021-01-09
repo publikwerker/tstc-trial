@@ -66,10 +66,30 @@ html {
     text-align: center;
   }
 
+  .info-button {
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+
+  .input-field {
+    padding : 10px;
+    display : block;
+    margin : 5px auto;
+    border-radius: 5px;
+  }
+
   .login {
     margin: 10px auto;
-    width: 80%;
-    min-width: 200px;
+    width: 200px;
+  }
+
+  .login-form {
+    padding : 10px;
+  }
+
+  .modal {
+    width : 80%;
+    margin : 5px auto;
   }
 
   .modal-ul {
@@ -94,6 +114,10 @@ html {
   .ticker-box {
     width: 100%;
     z-index: 1;
+  }
+
+  .tickInfo-box {
+    margin : 5px auto;
   }
 
   .ticker {

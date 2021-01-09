@@ -13,11 +13,6 @@ export default class Compendium extends Component {
     }
   }
 
-  handleClick = (e) => {
-    e.preventDefault();
-    console.log("word");
-  }
-
   setCount = (value) => {
     this.setState({
       ...this.state,
@@ -43,8 +38,7 @@ export default class Compendium extends Component {
             setVis={this.setVis}
             showInfo={this.state.showInfo}/>
 
-          <Login 
-            handleClick={this.handleClick} />
+          <Login />
 
           <Body />
 

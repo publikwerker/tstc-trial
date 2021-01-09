@@ -8,11 +8,11 @@ export default class Header extends React.Component {
     super(props);
     this.state = {
       ...props,
-      visitorObject : {},
-      count : 0
+      visitorObject : {}
     }
   }
 
+  //This is displayed in info box
   visitorDisplayString = '';
 
   setVisitorDisplayString = (value) => {
@@ -26,28 +26,18 @@ export default class Header extends React.Component {
     })
   }
 
-  setCount = (value) => {
-    this.setState({
-      ...this.state,
-      count: value
-    })
-  }
-
-  componentDidMount(){
-   //this.setCount(count);
-  }
-
   render(){
     const infoButton = 
       <button 
         onClick={this.props.setVis} 
-        className="button">+/-</button>
+        className="button info-button"
+      >+/-</button>
 
     let TickInfoElem = '';
 
     if(this.props.showInfo){
 
-      TickInfoElem = <div>
+      TickInfoElem = <div className="tickInfo-box">
         {infoButton}
         <TickInfo 
           className="ticker" 
@@ -59,15 +49,15 @@ export default class Header extends React.Component {
     }
     return (
       <header>
-      <div className="ticker-box" >
-        {TickInfoElem}
-        <Ticker 
-          infoVis={this.state.infoVis}
-          setCount={this.props.setCount} 
-          setVDS={this.setVisitorDisplayString} 
-          setVO={this.setVisitorObject} 
-          setVis={this.setInfoVis}/>
-      </div>
+        <div className="ticker-box" >
+          {TickInfoElem}
+          <Ticker 
+            infoVis={this.state.infoVis}
+            setCount={this.props.setCount} 
+            setVDS={this.setVisitorDisplayString} 
+            setVO={this.setVisitorObject} 
+            setVis={this.setInfoVis}/>
+        </div>
         <Title />
       </header>
     )
