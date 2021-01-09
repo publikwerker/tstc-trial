@@ -1,6 +1,5 @@
 import React from 'react';
 import Marquee from 'react-double-marquee';
-import TickInfo from './TickInfo';
 const axios = require('axios');
 
 export default class Ticker extends React.Component {
@@ -29,7 +28,7 @@ export default class Ticker extends React.Component {
       ...this.state,
       visitorObject : {
         hitDate : today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(),
-        // hitTime : 
+        hitTime : today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds(),
         appName : navigator.appName,
         appCodeName : navigator.appCodeName,
         platform : navigator.platform,
@@ -75,9 +74,6 @@ export default class Ticker extends React.Component {
   visitorDisplayString = "";
 
   render(){
-    var TickInfoElem;
-    console.log(this.state);
-    console.log(this.props)
 
     // allow access to key names as strings
     let visitorDisplayArray = JSON.stringify(this.state.visitorObject);

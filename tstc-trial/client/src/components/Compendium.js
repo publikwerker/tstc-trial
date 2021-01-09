@@ -1,10 +1,10 @@
-import React, { useState, Component } from 'react';
+import React from 'react';
 import Header from './Header';
 import Body from './Body';
 import Footer from './Footer';
 import Login from './Login';
 
-export default class Compendium extends Component {
+export default class Compendium extends React.Component {
   constructor(props){
     super(props)
     this.state = {

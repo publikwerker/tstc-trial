@@ -4,6 +4,9 @@ const Visitor = new mongoose.Schema({
   hitDate: {
     type:Date
   },
+  hitTime: {
+    type:String
+  },
   appName: {
     type:String,
   },
@@ -43,6 +46,8 @@ const Visitor = new mongoose.Schema({
   viewportWidth: {
         type: Number
   }
+},{
+  timestamps : true
 });
 
 module.exports = mongoose.model('Visitor', Visitor);
