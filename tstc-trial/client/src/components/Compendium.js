@@ -5,9 +5,13 @@ import Footer from './Footer';
 import Login from './Login';
 
 export default class Compendium extends Component {
-  state = {
-      count: 0
+  constructor(props){
+    super(props)
+    this.state = {
+      count : 0,
+      showInfo : false
     }
+  }
 
   handleClick = (e) => {
     e.preventDefault();
@@ -16,17 +20,37 @@ export default class Compendium extends Component {
 
   setCount = (value) => {
     this.setState({
-      count: value
+      ...this.state,
+      count : value
+    })
+  }
+
+  setVis = (e) => {
+    e.preventDefault();
+    console.log("setVis was triggerd");
+    this.setState({
+      ...this.state,
+      showInfo : !this.state.showInfo
     })
   }
   
   render() {
     return (
       <div className="compendium">
-          <Header setCount={this.setCount}/>
-          <Login handleClick={this.handleClick} />
+
+          <Header 
+            setCount={this.setCount}
+            setVis={this.setVis}
+            showInfo={this.state.showInfo}/>
+
+          <Login 
+            handleClick={this.handleClick} />
+
           <Body />
-          <Footer count={this.state.count}/>
+
+          <Footer 
+            count={this.state.count}/>
+
       </div>
     );
   }

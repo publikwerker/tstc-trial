@@ -20,10 +20,10 @@ export default class Login extends React.Component {
       buttonText = "Nevermind";
       loginForm = <form className="login-form ticker">
         <label for="username">Username</label>
-        <input type="text" name="username" placeholder="username"></input>
+        <input type="text" name="username" placeholder="Traveller001"></input>
 
         <label for="password">Password</label>
-        <input type="text" name="password" placeholder="password"></input>
+        <input type="text" name="password" placeholder="Sw0rdf1$h"></input>
 
         <button type="submit">Login</button>
       </form>

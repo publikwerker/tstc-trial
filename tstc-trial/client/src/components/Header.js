@@ -8,18 +8,15 @@ export default class Header extends React.Component {
     super(props);
     this.state = {
       ...props,
-      visitorDisplayString: '',
-      visitorObject: {},
-      infoVis: false,
-      count: 0
+      visitorObject : {},
+      count : 0
     }
   }
 
+  visitorDisplayString = '';
+
   setVisitorDisplayString = (value) => {
-    this.setState({
-      ...this.state,
-      visitorDisplayString:value
-    });
+      this.visitorDisplayString = value;
   }
 
   setVisitorObject = (value) => {
@@ -27,19 +24,6 @@ export default class Header extends React.Component {
       ...this.state,
       visitorObject: value
     })
-  }
-
-  setInfoVis = () => {
-    console.log("setInfoVis was triggered");
-    this.setState({
-      ...this.state,
-      infoVis: !this.state.infoVis
-    })
-  }
-
-  setVis = (e) => {
-    e.preventDefault();
-    console.log("setVis was triggerd");
   }
 
   setCount = (value) => {
@@ -55,15 +39,19 @@ export default class Header extends React.Component {
 
   render(){
     const infoButton = 
-      <button onClick={this.props.setVis} className="button">+/-</button>
+      <button 
+        onClick={this.props.setVis} 
+        className="button">+/-</button>
 
     let TickInfoElem = '';
 
-    if(this.state.infoVis){
+    if(this.props.showInfo){
 
       TickInfoElem = <div>
         {infoButton}
-        <TickInfo className="ticker" infoString={this.tickInfoString} />
+        <TickInfo 
+          className="ticker" 
+          infoString={this.visitorDisplayString} />
         {infoButton}
       </div> 
     } else {
@@ -73,8 +61,12 @@ export default class Header extends React.Component {
       <header>
       <div className="ticker-box" >
         {TickInfoElem}
-        <Ticker setCount={this.props.setCount} setVDS={this.setVisitorDisplayString} setInfo={this.setVisitorObject} infoVis={this.state.infoVis}
-        setVis={this.setInfoVis}/>
+        <Ticker 
+          infoVis={this.state.infoVis}
+          setCount={this.props.setCount} 
+          setVDS={this.setVisitorDisplayString} 
+          setVO={this.setVisitorObject} 
+          setVis={this.setInfoVis}/>
       </div>
         <Title />
       </header>

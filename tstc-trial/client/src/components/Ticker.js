@@ -24,10 +24,12 @@ export default class Ticker extends Component {
 
     var today = new Date();
 
+    // set the Visitor object from browser info
     this.setState({
       ...this.state,
       visitorObject : {
         hitDate : today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate(),
+        // hitTime : 
         appName : navigator.appName,
         appCodeName : navigator.appCodeName,
         platform : navigator.platform,
@@ -42,18 +44,21 @@ export default class Ticker extends Component {
         timeZone : Intl.DateTimeFormat().resolvedOptions().timeZone,
           viewportHeight : h,
         viewportWidth : w
-        //openPorts,navigatorPlugins,IPAddress
+        //openPorts,navigatorPlugins,IPAddress,geolocation
       }
     })
+
 
   }
 
   componentDidMount(){
-    this.props.setInfo(this.state.visitorObject);
+    this.props.setVO(this.state.visitorObject);
     this.postVisitors();
+
+
   }
 
-  postVisitors=()=>{
+  postVisitors = ( ) => {
     axios({
       method:'post',
       url:'http://localhost:8080/visitor',
@@ -94,11 +99,11 @@ export default class Ticker extends Component {
     (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.` : ` Your ${pair[0]} variable is blank.`));
 
     //create string to display in TickInfo
-    this.tickInfoString = visitorDisplayArray.map( pair =>
+    let tickInfoString = visitorDisplayArray.map( pair =>
     (pair[1]? ` Your ${pair[0]} variable has a value of ${pair[1]}.\n` : ` Your ${pair[0]} variable is blank.\n`));
 
     //pass string up to Header
-    //this.state.setVDS(this.tickInfoString);
+    this.props.setVDS(tickInfoString);
 
     return (
       <div className="ticker-box" onClick={this.props.setVis}>
