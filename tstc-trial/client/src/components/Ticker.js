@@ -51,8 +51,6 @@ export default class Ticker extends React.Component {
   componentDidMount(){
     this.props.setVO(this.state.visitorObject);
     this.postVisitors();
-
-
   }
 
   postVisitors = ( ) => {

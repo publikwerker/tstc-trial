@@ -11,6 +11,7 @@ Use visitor_log_db;
 CREATE TABLE visitor_hits (
   ID int AUTO_INCREMENT NOT NULL,
   hitDate date,
+  hitTime VARCHAR(30),
   appName VARCHAR(30),
   appCodeName VARCHAR(30),
   platform VARCHAR(30),
@@ -18,7 +19,7 @@ CREATE TABLE visitor_hits (
   appVersion VARCHAR(150),
   userAgent VARCHAR(150),
   language VARCHAR(30),
-  onLine: BOOLEAN,
+  onLine BOOLEAN,
   javaEnabled BOOLEAN,
   hostname VARCHAR(30),
   locale VARCHAR(30),
