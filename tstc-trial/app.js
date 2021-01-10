@@ -174,20 +174,6 @@ app.delete('/user', (req,res) => {
   res.send(`Deleting user profile from database!`)
 });
 
-/*
-//Mongo DB
-app.post('/visitor', async (req,res) => {
-  console.log(req.body);
-  try {
-    let visitor = new Visitor(req.body);
-    let result = await visitor.save();
-    res.send(`Visitating! ${result}`)   
-  } catch (err) {
-    res.status(500).send(err);
-  }
-});
-*/
-
 
 //MYSQL 
 app.get('/visitor', (req,res) => {
@@ -213,6 +199,7 @@ app.get('/visitorCount', (req,res) => {
 app.post('/visitor', (req,res) => {
   const { 
     hitDate, 
+    hitTime,
     appName, 
     appCodeName, 
     platform, 
@@ -229,6 +216,7 @@ app.post('/visitor', (req,res) => {
     viewportWidth } = req.body;
 
     console.log(hitDate, 
+      hitTime,
       appName, 
       appCodeName, 
       platform, 
@@ -246,7 +234,7 @@ app.post('/visitor', (req,res) => {
 
       // console.log(Object.keys(req.body));
 
-      const queryString = "INSERT INTO visitor_hits (" + Object.keys(req.body) + ") VALUES ('" + hitDate + "','"+ appName + "','"+ appCodeName + "','" + platform + "','" + product + "','" + appVersion + "','" + userAgent + "','" + language + "'," + onLine + "," + javaEnabled + ",'" + hostname + "','" + locale + "','" + timeZone + "'," + viewportHeight + "," + viewportWidth + ");"
+      const queryString = "INSERT INTO visitor_hits (" + Object.keys(req.body) + ") VALUES ('" + hitDate + "','" + hitTime + "','"+ appName + "','"+ appCodeName + "','" + platform + "','" + product + "','" + appVersion + "','" + userAgent + "','" + language + "'," + onLine + "," + javaEnabled + ",'" + hostname + "','" + locale + "','" + timeZone + "'," + viewportHeight + "," + viewportWidth + ");"
 
       // console.log("QueryString: ***********", queryString);
 
