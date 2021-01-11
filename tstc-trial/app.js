@@ -175,82 +175,82 @@ app.delete('/user', (req,res) => {
 });
 
 
-//MYSQL 
-app.get('/visitor', (req,res) => {
-  console.log(req.body, "**************************This is the req.body variable from /visitor GET");
-  MYSQLConnection.query("SELECT * FROM visitor_hits", function(err, result) {
-    if (err) throw err;
-    console.log(result, "this is the result variable");
+// //MYSQL 
+// app.get('/visitor', (req,res) => {
+//   console.log(req.body, "**************************This is the req.body variable from /visitor GET");
+//   MYSQLConnection.query("SELECT * FROM visitor_hits", function(err, result) {
+//     if (err) throw err;
+//     console.log(result, "this is the result variable");
 
-    console.log(result.length);
-    res.send(result);
-  });
+//     console.log(result.length);
+//     res.send(result);
+//   });
 
-  });
+//   });
 
-app.get('/visitorCount', (req,res) => {  
-    MYSQLConnection.query("SELECT Count(*) FROM visitor_hits", function(err, result) {
-    if (err) throw err;
-    console.log(result, "this is the result variable from /visitorCount");
-    res.send(result);
-    })
-  });
+// app.get('/visitorCount', (req,res) => {  
+//     MYSQLConnection.query("SELECT Count(*) FROM visitor_hits", function(err, result) {
+//     if (err) throw err;
+//     console.log(result, "this is the result variable from /visitorCount");
+//     res.send(result);
+//     })
+//   });
 
-app.post('/visitor', (req,res) => {
-  const { 
-    hitDate, 
-    hitTime,
-    appName, 
-    appCodeName, 
-    platform, 
-    product, 
-    appVersion, 
-    userAgent, 
-    language,
-    onLine,
-    javaEnabled,
-    hostname,
-    locale, 
-    timeZone, 
-    viewportHeight, 
-    viewportWidth } = req.body;
+// app.post('/visitor', (req,res) => {
+//   const { 
+//     hitDate, 
+//     hitTime,
+//     appName, 
+//     appCodeName, 
+//     platform, 
+//     product, 
+//     appVersion, 
+//     userAgent, 
+//     language,
+//     onLine,
+//     javaEnabled,
+//     hostname,
+//     locale, 
+//     timeZone, 
+//     viewportHeight, 
+//     viewportWidth } = req.body;
 
-    console.log(hitDate, 
-      hitTime,
-      appName, 
-      appCodeName, 
-      platform, 
-      product, 
-      appVersion, 
-      userAgent, 
-      language,
-      onLine,
-      javaEnabled,
-      hostname,
-      locale, 
-      timeZone, 
-      viewportHeight, 
-      viewportWidth);
+//     console.log(hitDate, 
+//       hitTime,
+//       appName, 
+//       appCodeName, 
+//       platform, 
+//       product, 
+//       appVersion, 
+//       userAgent, 
+//       language,
+//       onLine,
+//       javaEnabled,
+//       hostname,
+//       locale, 
+//       timeZone, 
+//       viewportHeight, 
+//       viewportWidth);
 
-      // console.log(Object.keys(req.body));
+//       // console.log(Object.keys(req.body));
 
-      const queryString = "INSERT INTO visitor_hits (" + Object.keys(req.body) + ") VALUES ('" + hitDate + "','" + hitTime + "','"+ appName + "','"+ appCodeName + "','" + platform + "','" + product + "','" + appVersion + "','" + userAgent + "','" + language + "'," + onLine + "," + javaEnabled + ",'" + hostname + "','" + locale + "','" + timeZone + "'," + viewportHeight + "," + viewportWidth + ");"
+//       const queryString = "INSERT INTO visitor_hits (" + Object.keys(req.body) + ") VALUES ('" + hitDate + "','" + hitTime + "','"+ appName + "','"+ appCodeName + "','" + platform + "','" + product + "','" + appVersion + "','" + userAgent + "','" + language + "'," + onLine + "," + javaEnabled + ",'" + hostname + "','" + locale + "','" + timeZone + "'," + viewportHeight + "," + viewportWidth + ");"
 
-      // console.log("QueryString: ***********", queryString);
+//       // console.log("QueryString: ***********", queryString);
 
-  MYSQLConnection.query(queryString, function(err, result) {
-    if (err) {
-      return res.status(500).end();
-    }
+//   MYSQLConnection.query(queryString, function(err, result) {
+//     if (err) {
+//       return res.status(500).end();
+//     }
 
 
-    MYSQLConnection.query("SELECT Count(*) FROM visitor_hits", function(err, result) {
-      if (err) throw err;
-      res.send(result);
-    });
+//     MYSQLConnection.query("SELECT Count(*) FROM visitor_hits", function(err, result) {
+//       if (err) throw err;
+//       res.send(result);
+//     });
 
-  });
-});
+//   });
+// });
 
 
 app.listen(port, () => console.log(`App listening on port ${port}!`));
