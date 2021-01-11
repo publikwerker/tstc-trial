@@ -65,7 +65,7 @@ app.post('/visitor', (req,res) => {
 
       const queryString = "INSERT INTO visitor_hits (" + Object.keys(req.body) + ") VALUES (" + hitDate + "," + hitTime + "," + appName + ","+ appCodeName + "," + platform + "," + product + "," + appVersion + "," + userAgent + "," + language + "," + onLine + "," + javaEnabled + "," + hostname + "," + locale + "," + timeZone + "," + viewportHeight + "," + viewportWidth + ");"
 
-      // console.log("QueryString: ***********", queryString);
+      console.log("QueryString: ***********", queryString);
 
       visitor.create(queryString, function(result) {
         res.json({ id: result.insertId });

@@ -4,9 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-// const mysql = require("mysql");
-
 const app = express();
+
 const URI = process.env.MONGODB_URI ||'mongodb://localhost/tstc-trial';
 const port = process.env.PORT || 8080;
 const Profile = require( "./models/Profile");
@@ -14,13 +13,19 @@ const Blog = require("./models/Blog");
 const Collective = require("./models/Collective");
 const Story = require("./models/Story");
 
-// const HOST = process.env.MYSQL_CONNECTION_HOST;
-// const PORT = process.env.MYSQL_CONNECTION_PORT;
-// const USER = process.env.MYSQL_CONNECTION_USER;
-// const PASSWORD = process.env.MYSQL_CONNECTION_PASSWORD;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
+
+// Add Access Control Allow Origin headers
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 const routes = require("./controllers/visitorController");
 app.use(routes);
@@ -48,24 +53,6 @@ var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.on('success', () => {console, 'MongoDB successfully connected!'});
-
-// // MySQL DB Connection Information 
-// var MYSQLConnection = mysql.createConnection({
-//   host: HOST,
-//   port: PORT,
-//   user: USER,
-//   password: PASSWORD,
-//   database: "visitor_log_db"
-// });
-
-// // Initiate MySQL Connection.
-// MYSQLConnection.connect(function(err) {
-//   if (err) {
-//     console.error("error connecting to MYSQL: " + err.stack);
-//     return;
-//   }
-//   console.log("connected to MYSQL as id " + MYSQLConnection.threadId);
-//   });
 
 const path = require('path');
 app.use(express.static(path.join(__dirname, 'client/build')));
