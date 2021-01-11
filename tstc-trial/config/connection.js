@@ -2,11 +2,11 @@
 const mysql = require("mysql");
 
 //Import variables
-const HOST = process.env.MYSQL_CONNECTION_HOST;
-const PORT = process.env.MYSQL_CONNECTION_PORT;
-const USER = process.env.MYSQL_CONNECTION_USER;
-const PASSWORD = process.env.MYSQL_CONNECTION_PASSWORD;
-const MYSQLDB = process.env.MYSQL_DB;
+const HOST = process.env.MYSQL_CONNECTION_HOST || ";ocalhost";
+const PORT = process.env.MYSQL_CONNECTION_PORT || 3306;
+const USER = process.env.MYSQL_CONNECTION_USER || "root";
+const PASSWORD = process.env.MYSQL_CONNECTION_PASSWORD || "";
+const MYSQLDB = process.env.MYSQL_DB || "visitor_log_db";
 
 //MySQL DB Connection Information 
 var MYSQLConnection = mysql.createConnection({
@@ -14,7 +14,7 @@ var MYSQLConnection = mysql.createConnection({
   port: PORT,
   user: USER,
   password: PASSWORD,
-  database: "visitor_log_db"
+  database: MYSQLDB
 });
 
 // Initiate MySQL Connection.
@@ -24,7 +24,7 @@ MYSQLConnection.connect(function(err) {
     return;
   }
   console.log("connected to MYSQL as id " + MYSQLConnection.threadId);
-  });
+});
 
 // Export connection for ORM to use.
-module.exports = MYSQLconnection;
+module.exports = MYSQLConnection;

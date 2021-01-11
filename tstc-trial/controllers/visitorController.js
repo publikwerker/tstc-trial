@@ -63,7 +63,7 @@ app.post('/visitor', (req,res) => {
 
       // console.log(Object.keys(req.body));
 
-      const queryString = "INSERT INTO visitor_hits (" + Object.keys(req.body) + ") VALUES ('" + hitDate + "','" + hitTime + "','"+ appName + "','"+ appCodeName + "','" + platform + "','" + product + "','" + appVersion + "','" + userAgent + "','" + language + "'," + onLine + "," + javaEnabled + ",'" + hostname + "','" + locale + "','" + timeZone + "'," + viewportHeight + "," + viewportWidth + ");"
+      const queryString = "INSERT INTO visitor_hits (" + Object.keys(req.body) + ") VALUES (" + hitDate + "," + hitTime + "," + appName + ","+ appCodeName + "," + platform + "," + product + "," + appVersion + "," + userAgent + "," + language + "," + onLine + "," + javaEnabled + "," + hostname + "," + locale + "," + timeZone + "," + viewportHeight + "," + viewportWidth + ");"
 
       // console.log("QueryString: ***********", queryString);
 

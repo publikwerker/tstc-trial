@@ -10,7 +10,6 @@ const app = express();
 const URI = process.env.MONGODB_URI ||'mongodb://localhost/tstc-trial';
 const port = process.env.PORT || 8080;
 const Profile = require( "./models/Profile");
-const Visitor = require("./models/Visitor");
 const Blog = require("./models/Blog");
 const Collective = require("./models/Collective");
 const Story = require("./models/Story");
@@ -22,6 +21,9 @@ const Story = require("./models/Story");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:true }));
+
+const routes = require("./controllers/visitorController");
+app.use(routes);
 
 
 //MONGODB Connection Information

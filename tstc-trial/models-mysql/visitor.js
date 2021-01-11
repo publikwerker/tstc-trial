@@ -7,8 +7,8 @@ var visitor = {
     });
   },
 
-  create: function(cols, vals, cb) {
-    orm.create("visitors", cols, vals, function(res) {
+  create: function(queryString, cb) {
+    orm.create("visitors", queryString, function(res) {
       cb(res);
     });
   },

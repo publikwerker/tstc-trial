@@ -28,15 +28,15 @@ var orm = {
       cb(result);
     });
   },
-  create: function(table, queryString, cb) {
-    var queryString = "INSERT INTO " + table;
+  create: function( queryString, cb) {
+    // var queryString = "INSERT INTO " + table;
 
-    queryString += " (";
-    queryString += cols.toString();
-    queryString += ") ";
-    queryString += "VALUES (";
-    queryString += printQuestionMarks(vals.length);
-    queryString += ") ";
+    // queryString += " (";
+    // queryString += cols.toString();
+    // queryString += ") ";
+    // queryString += "VALUES (";
+    // queryString += printQuestionMarks(vals.length);
+    // queryString += ") ";
 
     console.log(queryString);
 
