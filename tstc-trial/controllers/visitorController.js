@@ -8,7 +8,7 @@ app.get('/visitor', (req,res) => {
   console.log(req.body, "**************************This is the req.body variable from /visitor GET");
   visitor.all(function(data) {
     var visObject = {
-      visitors: data
+      visitor_hits: data
     };
     console.log(visObject);
     res.send(visObject);
@@ -44,26 +44,27 @@ app.post('/visitor', (req,res) => {
     viewportHeight, 
     viewportWidth } = req.body;
 
-    console.log(hitDate, 
-      hitTime,
-      appName, 
-      appCodeName, 
-      platform, 
-      product, 
-      appVersion, 
-      userAgent, 
-      language,
-      onLine,
-      javaEnabled,
-      hostname,
-      locale, 
-      timeZone, 
-      viewportHeight, 
-      viewportWidth);
+    // console.log(hitDate, 
+    //   hitTime,
+    //   appName, 
+    //   appCodeName, 
+    //   platform, 
+    //   product, 
+    //   appVersion, 
+    //   userAgent, 
+    //   language,
+    //   onLine,
+    //   javaEnabled,
+    //   hostname,
+    //   locale, 
+    //   timeZone, 
+    //   viewportHeight, 
+    //   viewportWidth);
 
-      // console.log(Object.keys(req.body));
+    console.log(req.body);
+      console.log(Object.keys(req.body));
 
-      const queryString = "INSERT INTO visitor_hits (" + Object.keys(req.body) + ") VALUES (" + hitDate + "," + hitTime + "," + appName + ","+ appCodeName + "," + platform + "," + product + "," + appVersion + "," + userAgent + "," + language + "," + onLine + "," + javaEnabled + "," + hostname + "," + locale + "," + timeZone + "," + viewportHeight + "," + viewportWidth + ");"
+      const queryString = "INSERT INTO visitor_hits (" + Object.keys(req.body) + ") VALUES ('" + hitDate + "','" + hitTime + "','" + appName + "','" + appCodeName + "','" + platform + "','" + product + "','" + appVersion + "','" + userAgent + "','" + language + "'," + onLine + "," + javaEnabled + ",'" + hostname + "','" + locale + "','" + timeZone + "'," + viewportHeight + "," + viewportWidth + ");"
 
       console.log("QueryString: ***********", queryString);
 

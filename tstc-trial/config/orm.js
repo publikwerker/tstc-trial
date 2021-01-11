@@ -28,7 +28,7 @@ var orm = {
       cb(result);
     });
   },
-  create: function( queryString, cb) {
+  create: function( table, queryString, cb) {
     // var queryString = "INSERT INTO " + table;
 
     // queryString += " (";
@@ -38,6 +38,7 @@ var orm = {
     // queryString += printQuestionMarks(vals.length);
     // queryString += ") ";
 
+    console.log(table);
     console.log(queryString);
 
     connection.query(queryString, function(err, result) {
