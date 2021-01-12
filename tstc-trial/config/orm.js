@@ -38,8 +38,8 @@ var orm = {
     // queryString += printQuestionMarks(vals.length);
     // queryString += ") ";
 
-    console.log(table);
-    console.log(queryString);
+    console.log(table, "*********this is table inside orm.create");
+    console.log(queryString, "*****this is queryString inside ORM");
 
     connection.query(queryString, function(err, result) {
       if (err) {

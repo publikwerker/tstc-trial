@@ -68,7 +68,10 @@ app.post('/visitor', (req,res) => {
 
       console.log("QueryString: ***********", queryString);
 
-      visitor.create(queryString, function(result) {
+      visitor.create(queryString,  function(err, result) {
+        if (err) {
+          throw err;
+        }
         res.json({ id: result.insertId });
       });
     });

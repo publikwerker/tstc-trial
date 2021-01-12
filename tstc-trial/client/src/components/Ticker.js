@@ -61,8 +61,8 @@ export default class Ticker extends React.Component {
     })
     .then( (response)=> {
       console.log(response, "this is the axios response");
-      console.log(Object.values(response.data[0])[0], "this is the count");
-      this.props.setCount(Object.values(response.data[0])[0]);
+      console.log(Object.values(response.data.id), "this is the count");
+      this.props.setCount(Object.values(response.data.id));
     })
     .catch(function (error) {
       console.log(error);
