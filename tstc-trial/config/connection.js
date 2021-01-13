@@ -2,7 +2,7 @@
 const mysql = require("mysql");
 
 //Import variables
-const HOST = process.env.MYSQL_CONNECTION_HOST || ";ocalhost";
+const HOST = process.env.MYSQL_CONNECTION_HOST || "localhost";
 const PORT = process.env.MYSQL_CONNECTION_PORT || 3306;
 const USER = process.env.MYSQL_CONNECTION_USER || "root";
 const PASSWORD = process.env.MYSQL_CONNECTION_PASSWORD || "";
