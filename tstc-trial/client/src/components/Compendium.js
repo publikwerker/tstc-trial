@@ -43,6 +43,9 @@ export default class Compendium extends React.Component {
           <Body />
 
           <Footer 
+            setCount={this.setCount}
+            setVis={this.setVis}
+            showInfo={this.state.showInfo}
             count={this.state.count}/>
 
       </div>
