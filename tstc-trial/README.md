@@ -1,28 +1,11 @@
-# tstc-trial
+# The Space-Time Compendium
 
-This project was built with Turbo 360. To learn more, click here: https://www.turbo360.co
+## Description
 
-## Instructions
-After cloning into repo, cd to project root directory and install dependencies:
+The Space-Time Compendium is a one-stop resource for all things time-travel related. Are you from an altenate dimension? No worries, you can meet fellow crossers. Are you from the future? We've got you covered, too. Check our databases for all the latest timelines and paradoxes.
 
-```
-$ npm install
-```
-
-To run dev server, install Turbo CLI globally:
-
-```
-$ sudo npm install turbo-cli -g
-```
-
-Then run devserver from project root directory:
-
-```
-$ turbo devserver
-```
-
-To build for production, run build:
-
-```
-$ npm run build
-```
+## Technology
+* React
+* Node
+* MySQL
+* MongoDB
