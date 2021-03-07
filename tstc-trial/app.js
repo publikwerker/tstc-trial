@@ -14,21 +14,34 @@ const Collective = require("./models/Collective");
 const Story = require("./models/Story");
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended:true }));
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Add Access Control Allow Origin headers
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Origin", 
+    "*");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+	res.setHeader(
+    "Access-Control-Allow-Methods", 
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE");
   next();
 });
 
+
 const routes = require("./controllers/visitorController");
+
 app.use(routes);
+
+
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 
 //MONGODB Connection Information
@@ -54,15 +67,8 @@ var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 db.on('success', () => {console, 'MongoDB successfully connected!'});
 
-const path = require('path');
-app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.use((req, res, next) => {
-	res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept');
-	next();
-});
+
 
 app.get('/', (req,res) => res.send('tstc is online!'));
 
